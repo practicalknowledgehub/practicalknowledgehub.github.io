@@ -1,1 +1,8 @@
-Upload the FOUR HTML/XML files in this package to the GitHub Pages repository ROOT (main branch). Replace index.html and sitemap.xml; keep all existing files. The homepage preserves the AdSense verification meta tag and all 11 article links. Do not remove the AdSense meta tag during the ongoing site review. The calculators run client-side without sending input to a server.
+UPLOAD THESE FIVE FILES TO THE ROOT OF YOUR GITHUB REPOSITORY:
+index.html (replace)
+calculators.html (replace)
+msme-dscr-calculator.html (new)
+msme-drawing-power-calculator.html (new)
+sitemap.xml (replace)
+
+The homepage shows four horizontally arranged calculator tabs on desktop, two columns on mobile. Existing EMI and Working Capital calculator files remain unchanged. AdSense verification is retained.
