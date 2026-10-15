@@ -1,8 +1,1 @@
-UPLOAD THESE FIVE FILES TO THE ROOT OF YOUR GITHUB REPOSITORY:
-index.html (replace)
-calculators.html (replace)
-msme-dscr-calculator.html (new)
-msme-drawing-power-calculator.html (new)
-sitemap.xml (replace)
-
-The homepage shows four horizontally arranged calculator tabs on desktop, two columns on mobile. Existing EMI and Working Capital calculator files remain unchanged. AdSense verification is retained.
+FIX: The previous package mistakenly showed only two calculator links. Upload index.html and calculators.html to replace the existing pages. If all four calculator HTML files are already present, no need to reupload them. The ZIP includes all four calculator HTML files as a safety measure. Keep existing sitemap.xml and all articles unchanged. The AdSense verification meta tag remains in index.html.
