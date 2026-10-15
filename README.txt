@@ -1,0 +1,1 @@
+Upload the FOUR HTML/XML files in this package to the GitHub Pages repository ROOT (main branch). Replace index.html and sitemap.xml; keep all existing files. The homepage preserves the AdSense verification meta tag and all 11 article links. Do not remove the AdSense meta tag during the ongoing site review. The calculators run client-side without sending input to a server.
