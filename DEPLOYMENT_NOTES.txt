@@ -1,0 +1,4 @@
+MSME Knowledge Hub - October 2026 consolidated update
+Includes new PED and Negotiated Repayment calculators, updated EMI comparison cards, English/Hindi selector for common navigation and selected calculator labels. Full Hindi article translations are NOT included; article body remains in English.
+Preserve existing GitHub CNAME, robots.txt and all other root assets. Upload extracted files, not the ZIP. Do not change custom domain.
+Interest uses nominal annual rate /12 on opening monthly principal; not daily-product bank method. Verify on the live site.
