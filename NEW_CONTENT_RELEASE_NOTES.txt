@@ -1,0 +1,7 @@
+NEW CONTENT STAGING RELEASE — 18 October 2026
+2 new educational articles and 2 interactive calculators.
+Existing eight calculators preserved.
+Links added to homepage and calculators directory; sitemap updated.
+GA4 success events emitted for valid new calculator results.
+IMPORTANT: This is a content staging build from the last uploaded GA4 ZIP; IndexNow workflow files from the later GitHub changes are NOT included. Do not replace/delete .github/, scripts/ or the IndexNow key in GitHub. Prefer uploading the six changed/new HTML files and sitemap.xml individually.
+No full browser end-to-end testing was performed.
