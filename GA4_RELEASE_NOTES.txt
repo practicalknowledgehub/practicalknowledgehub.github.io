@@ -1,0 +1,19 @@
+MSME Knowledge Hub GA4 deployment package — 18 October 2026
+
+Based on: MSME_Knowledge_Hub_Final_PDF_Corrections_2026-10-18.zip
+
+Changes:
+- Installed GA4 Measurement ID G-H5YGKX4K3X in 42 HTML pages.
+- Added lightweight click-based analytics for calculate, PDF, CSV and reset controls on calculator pages. These events measure button clicks, NOT successful calculations/downloads.
+- Updated privacy policy to disclose Google Analytics and existing AdSense use.
+- No calculator input values, loan amounts, user identities or entered financial data are sent by our custom events.
+- Original site content, calculator logic, AdSense code, sitemap and assets otherwise retained.
+
+TEST BEFORE MERGE:
+1. Deploy on staging and check page source for exactly one G-H5YGKX4K3X config per page.
+2. Open Google Analytics > Reports > Realtime and visit website; verify page_view.
+3. Test calculator actions and check event counts (click events only).
+4. Verify PDFs, CSVs and calculations continue working on mobile.
+5. Check privacy policy and applicable consent requirements for your audiences.
+
+Not included: IndexNow automation, complete Hindi translation QA, Google Search Console association (requires Analytics UI permissions).
