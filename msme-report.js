@@ -17,7 +17,7 @@ const filename='MsmeKnowledgeHub.com_'+config[0]+'_Calculator.pdf';
 const inputs=()=>[...document.querySelectorAll('main input,main select,main textarea')].filter(e=>e.type!=='hidden'&&e.id!=='site-language'&&!e.closest('.msme-report-actions'));
 const snapshot=()=>JSON.stringify(inputs().map(e=>[e.id,e.name,e.type==='checkbox'?e.checked:e.value]));
 const fmt=n=>new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',minimumFractionDigits:2,maximumFractionDigits:2}).format(n);
-function inputLabel(e){const l=e.id&&document.querySelector('label[for="'+e.id.replace(/"/g,'')+'"]');return clean(l?.textContent||e.closest('label')?.textContent.replace(e.value,'')||e.name||e.id||'Input');}
+function inputLabel(e){const l=e.id&&document.querySelector('label[for="'+e.id.replace(/"/g,'')+'"]');const parent=l||e.closest('label');if(parent){const copy=parent.cloneNode(true);copy.querySelectorAll('input,select,textarea,option,button').forEach(x=>x.remove());const name=clean(copy.textContent);if(name)return name;}return clean(e.name||e.id||'Input');}
 const resultIds={
  EMI:[['e_emi','Monthly EMI after moratorium'],['e_interest','Total Interest'],['e_total','Total Repayment Including Fee'],['e_feeout','Processing Fee']],
  PED:[['first-pay','First Installment Payable'],['last-pay','Final Installment Payable'],['total-interest','Total Interest'],['total-paid','Total Repayment']],
@@ -37,7 +37,7 @@ function readMetrics(){const kind=config[0];if(kind==='Business_Loan_Eligibility
 }
 function readTables(){const tables=[...document.querySelectorAll('main table')].filter(t=>!t.closest('[hidden]')&&t.rows.length>1).map(t=>[...t.rows].map(r=>[...r.cells].map(c=>clean(c.textContent))));
  if(config[0]==='Cash_Credit_Interest'&&!tables.length){const tb=$('cc_breakdown')?.querySelector('table');if(tb)tables.push([...tb.rows].map(r=>[...r.cells].map(c=>clean(c.textContent))));}
- for(const t of tables){const h=t[0].map(x=>x.toLowerCase());const op=h.findIndex(x=>x.includes('opening')),pr=h.findIndex(x=>x.includes('principal')),intr=h.findIndex(x=>x.includes('interest')),pay=h.findIndex(x=>x.includes('payment')||x.includes('instalment')),cl=h.findIndex(x=>x.includes('closing'));
+ for(const t of tables){if(config[0]==='EMI'&&t[0].length===6&&t[0][0].toLowerCase().includes('month')){t[0]=['Month','Opening Balance (₹)','Principal (₹)','Interest (₹)','Installment Payable (₹)','Closing Balance (₹)'];continue;}const h=t[0].map(x=>x.toLowerCase());const op=h.findIndex(x=>x.includes('opening')),pr=h.findIndex(x=>x.includes('principal')),intr=h.findIndex(x=>x.includes('interest')),pay=h.findIndex(x=>x.includes('payment')||x.includes('instalment')),cl=h.findIndex(x=>x.includes('closing'));
  if([op,pr,intr,pay,cl].every(i=>i>=0)){
  const month=h.findIndex(x=>x.includes('month')),year=h.findIndex(x=>x==='year');const order=[month,year,op,pr,intr,pay,cl].filter(i=>i>=0);for(let i=0;i<t.length;i++)t[i]=order.map(j=>t[i][j]);
  const pi=order.indexOf(pay);t[0][pi]='Installment Payable (₹)';
@@ -48,7 +48,7 @@ function readTables(){const tables=[...document.querySelectorAll('main table')].
 }
 function assumptions(){const kind=config[0];if(kind==='Cash_Credit_Interest'){
  const mode=$('cc_mode')?.value,rows=[['Calculation Mode',mode==='month'?'Single calendar month (dated ranges)':'Flexible periods (any duration)'],['Annual Interest Rate (%)',$('cc_rate')?.value]];
- if(mode==='month')rows.push(['Calendar Month',$('cc_ym')?.value]);return rows;}
+ if(mode==='month'){const raw=$('cc_ym')?.value||'';const m=/^(\d{4})-(\d{2})$/.exec(raw);const display=m?new Date(Date.UTC(+m[1],+m[2]-1,1)).toLocaleDateString('en-IN',{month:'long',year:'numeric',timeZone:'UTC'}):raw;rows.push(['Calendar Month',display]);}return rows;}
  return inputs().filter(e=>e.type!=='checkbox'||e.checked).map(e=>[inputLabel(e),e.options?e.options[e.selectedIndex]?.text:e.value]);}
 function balanceTable(){if(config[0]!=='Cash_Credit_Interest')return null;
  if($('cc_mode')?.value==='month'){
@@ -84,8 +84,8 @@ async function downloadReport(){if(!valid())return;const r=report();if(!r.result
  const enc=new TextEncoder(),parts=[],offsets=[0];let length=0;const push=b=>{parts.push(b);length+=b.length},str=s=>push(enc.encode(s));
  function obj(n,body){offsets[n]=length;str(n+' 0 obj\n'+body+'\nendobj\n');}
  function stream(n,dict,data){offsets[n]=length;str(n+' 0 obj\n<< '+dict+' /Length '+data.length+' >>\nstream\n');push(data);str('\nendstream\nendobj\n');}
- const count=jpgs.length,objs=2+count*3;str('%PDF-1.4\n');obj(1,'<< /Type /Catalog /Pages 2 0 R >>');obj(2,'<< /Type /Pages /Count '+count+' /Kids ['+jpgs.map((_,i)=>(3+i*3)+' 0 R').join(' ')+'] >>');
- jpgs.forEach((bytes,i)=>{const pageNo=3+i*3,imgNo=pageNo+1,linkNo=pageNo+2;obj(pageNo,'<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /XObject << /Im'+i+' '+imgNo+' 0 R >> >> /Contents '+(objs+1+i)+' 0 R /Annots ['+linkNo+' 0 R] >>');stream(imgNo,'/Type /XObject /Subtype /Image /Width '+W+' /Height '+H+' /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode',bytes);obj(linkNo,'<< /Type /Annot /Subtype /Link /Rect [32 775 330 815] /Border [0 0 0] /A << /S /URI /URI ('+SITE+') >> >>');});
+ const count=jpgs.length,objs=2+count*4;str('%PDF-1.4\n');obj(1,'<< /Type /Catalog /Pages 2 0 R >>');obj(2,'<< /Type /Pages /Count '+count+' /Kids ['+jpgs.map((_,i)=>(3+i*4)+' 0 R').join(' ')+'] >>');
+ jpgs.forEach((bytes,i)=>{const pageNo=3+i*4,imgNo=pageNo+1,headerLink=pageNo+2,footerLink=pageNo+3;obj(pageNo,'<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /XObject << /Im'+i+' '+imgNo+' 0 R >> >> /Contents '+(objs+1+i)+' 0 R /Annots ['+headerLink+' 0 R '+footerLink+' 0 R] >>');stream(imgNo,'/Type /XObject /Subtype /Image /Width '+W+' /Height '+H+' /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode',bytes);obj(headerLink,'<< /Type /Annot /Subtype /Link /Rect [35 757 260 778] /Border [0 0 0] /A << /S /URI /URI ('+SITE+') >> >>');obj(footerLink,'<< /Type /Annot /Subtype /Link /Rect [119 33 340 54] /Border [0 0 0] /A << /S /URI /URI ('+SITE+') >> >>');});
  jpgs.forEach((_,i)=>stream(objs+1+i,'',enc.encode('q 595.28 0 0 841.89 0 0 cm /Im'+i+' Do Q\n')));
  const xref=length;str('xref\n0 '+(objs+count+1)+'\n0000000000 65535 f \n');for(let i=1;i<=objs+count;i++)str(String(offsets[i]).padStart(10,'0')+' 00000 n \n');str('trailer\n<< /Size '+(objs+count+1)+' /Root 1 0 R >>\nstartxref\n'+xref+'\n%%EOF');
  const blob=new Blob(parts,{type:'application/pdf'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);

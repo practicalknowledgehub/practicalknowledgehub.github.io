@@ -1,18 +1,1 @@
-MSME Knowledge Hub — Consolidated Calculator QA Release — 18 October 2026
-
-Changes:
-- Calculator dropdown reordered consistently on all 42 HTML pages.
-- Shared PDF report generator replaced: dedicated direct PDF download via browser canvas and a separate Print / Save as PDF action; calculator-specific filenames.
-- PDF calculated results use curated, descriptive labels without duplicate raw rows.
-- EMI source repayment schedule column mapping corrected (Principal, Interest, Installment Payable) and CSV order updated.
-- Repayment schedules use Installment Payable; Negotiated report schedules are labelled Month-wise Repayment Schedule and Yearwise Summary.
-- Business Loan Eligibility report shows only the two calculated outputs.
-- Cash Credit Interest calculator moved above explanatory sections; flexible mode supports adding/removing periods; calendar-month breakdown sorted by day; PDF inputs split into general assumptions and horizontal outstanding-balance table.
-- DSCR and Drawing Power report buttons moved below their input panels; calculated outputs labelled.
-- Responsive CSS refinements on all eight calculator pages.
-- Contextual book references added to eight relevant educational articles.
-- Existing AdSense, custom domain, sitemap, robots, images, content and other pages preserved.
-
-Static checks: 42 HTML pages; inline JavaScript syntax checked with Node; no missing local linked files.
-
-IMPORTANT: Browser automation could not load local test pages in this environment (administrator blocked browser navigation). Therefore real mobile and desktop PDF download, page rendering, print layout, and financial result regression tests still require staging QA before production deployment. Test all eight calculators and PDFs on a staging branch before merging into main.
+MSME Knowledge Hub — consolidated PDF correction release (18 October 2026)\n\n1. EMI: corrected month-wise schedule column headings to match actual values: Month, Opening Balance, Principal, Interest, Installment Payable, Closing Balance.\n2. All eight calculator direct PDF reports: clickable URL annotations in both header and footer on every page.\n3. PED: Principal Repayment Frequency input assumption now shows label and selected option only.\n4. Cash Credit Interest: calendar month input assumption now displays e.g. October 2026 instead of 2026-10.\n\nStatic JavaScript and ZIP checks completed. Please test exported PDFs on Android and desktop before considering fully verified.\n
