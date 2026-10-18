@@ -1,0 +1,19 @@
+name: IndexNow after Pages deployment
+on:
+  deployment_status:
+permissions:
+  contents: read
+jobs:
+  submit:
+    if: github.event.deployment_status.state == 'success' && github.event.deployment.environment == 'github-pages'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Submit changed, new and deleted URLs
+        env:
+          INDEXNOW_KEY: "4ec3fcd16c1aca1823bc0826c53a76a4"
+          SITE_ORIGIN: https://msmeknowledgehub.com
+          DEPLOY_SHA: ${{ github.event.deployment.sha }}
+        run: python3 scripts/indexnow_submit.py

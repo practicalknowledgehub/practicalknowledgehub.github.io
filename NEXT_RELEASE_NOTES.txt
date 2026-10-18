@@ -1,0 +1,6 @@
+MSME Knowledge Hub — staged improvement build — 18 October 2026
+BASELINE: user-uploaded GA4 deployment ZIP (51 files).
+NEW: IndexNow GitHub Action after successful github-pages deployment status; domain-root public verification file; Python notifier detecting added/changed/deleted HTML URLs from git diff. No browser-side IndexNow key. IndexNow does not guarantee indexing or ranking.
+PRESERVED: 42 HTML pages, GA4 measurement, AdSense, calculator logic, PDFs, sitemap, CNAME and all original assets.
+NOT YET DONE: Hindi translation QA and PDF language consistency; reliable success-based GA4 calculation/download events; full regression testing. These require targeted implementation and staging browser tests.
+DEPLOYMENT NOTES: Upload hidden .github directory and scripts directory too; GitHub Actions must be enabled. Verify the key file is served at the domain root. The workflow runs on successful github-pages deployment_status events; if your Pages setup does not emit this event/environment, adapt workflow trigger to your Pages deployment workflow. For first deployment, no HTML changes relative to prior revision may mean no IndexNow submission; submit sitemap separately or edit relevant HTML on a later deploy.
