@@ -1,0 +1,3 @@
+/* Optional owner testing flag: ?testmode=1 enables, ?testmode=0 disables.
+   GA4 user property can be used to compare traffic; it does NOT exclude visits. */
+(function(){'use strict';try{var q=new URLSearchParams(location.search);if(q.get('testmode')==='1')localStorage.setItem('msme_test_mode','1');if(q.get('testmode')==='0')localStorage.removeItem('msme_test_mode');if(localStorage.getItem('msme_test_mode')==='1'){window.dataLayer=window.dataLayer||[];window.dataLayer.push(['set','user_properties',{site_owner_test:'true'}]);if(typeof window.gtag==='function')window.gtag('set','user_properties',{site_owner_test:'true'});}}catch(e){}})();

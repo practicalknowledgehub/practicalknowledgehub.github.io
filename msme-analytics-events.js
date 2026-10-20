@@ -3,6 +3,7 @@
   'use strict';
   var calculators = /(?:calculator|repayment)/i.test(location.pathname);
   if (!calculators) return;
+  // Interaction events are clicks only; they are not proof of successful calculation or file creation.
   document.addEventListener('click', function (event) {
     var target = event.target.closest('button, a, input[type="button"], input[type="submit"]');
     if (!target || typeof window.gtag !== 'function') return;
