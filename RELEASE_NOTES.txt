@@ -1,5 +1,11 @@
-MSME Knowledge Hub consolidated deployment package — 19 October 2026
+MSME KNOWLEDGE HUB — CONSOLIDATED RELEASE
 
-Includes: existing full site from October 18 IndexNow package; GA4-enabled October 18 articles/calculators; corrected homepage; six new guides (commercial property purchase, interest rates, repayment schedules, 13-week cash forecast, working capital gap, repayment capacity); three interactive calculators (13-week cash flow, working capital gap, repayment capacity); updated homepage listings, calculator directory, and sitemap.
+Deploy by extracting and uploading all files/folders to the root of practicalknowledgehub/practicalknowledgehub.github.io, main branch. Preserve folder paths.
 
-IMPORTANT: This package has not been uploaded to GitHub or tested on live site. Existing pages were preserved. Some earlier requested Hindi/PDF refinements and universal calculator analytics/test-mode improvements are not fully implemented; do not represent those as completed. Verify GA4 on new pages, all menus, calculator results, mobile rendering, IndexNow workflow and PDF reports before deployment. Upload full extracted contents to repository root, preserving .github and scripts folders.
+Included: 55 existing HTML pages, shared dropdown navigation and 13 calculator links, dedicated test.html diagnostic page, owner test-mode script, supplemental Hindi UI translations for common calculator labels, existing report/analytics JS, sitemap and IndexNow workflow.
+
+Important limitations: supplemental Hindi dictionary is NOT a complete Hindi translation of every calculator, result, validation message or PDF report. It translates known exact-match labels only. PDF rendering may not support Devanagari fonts on every device. No claim of full Hindi/PDF validation. Calculator mathematics and PDF output were not functionally tested in a browser; run the included dashboard and manual checks after deployment.
+
+The new ads.txt is intentionally excluded: your live root file must be preserved. The test.html page is publicly reachable, marked noindex and excluded from sitemap; it is not password protected.
+
+Static test results are in RELEASE_TEST_RESULTS.txt.

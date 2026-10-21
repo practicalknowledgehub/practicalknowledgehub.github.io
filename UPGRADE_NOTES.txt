@@ -1,0 +1,19 @@
+MSME Knowledge Hub — site-wide navigation and calculator discovery update (20 October 2026)
+
+Built from the October 19 consolidated release plus the October 20 four-file patch and corrected homepage.
+
+CHANGES
+- Consistent Articles, Calculators and Apply Loan Online menus on every HTML page.
+- 13 calculators in dropdown, plus the new articles.
+- Home/About/Contact/Book links on every page.
+- Tap, Escape key, outside-click and focus-visible support.
+- Mobile menu scrolling and responsive layout.
+- 13 calculator cards on homepage and calculator directory.
+- Shared navigation Hindi labels and persistence.
+- Preserved pre-existing content and calculator scripts.
+
+IMPORTANT
+- This package is NOT a completed end-to-end Hindi translation of every calculator or every PDF. Existing translations remain and need dedicated QA.
+- No live browser or GitHub Pages deployment was performed. Test after deployment.
+- Extract ZIP and upload files to the SAME repo locations, including .github/workflows and scripts. For minimal upload, upload all changed HTML files plus msme-navigation.css and msme-navigation.js.
+- Keep the newly created ads.txt in GitHub; this ZIP intentionally does not overwrite it.
