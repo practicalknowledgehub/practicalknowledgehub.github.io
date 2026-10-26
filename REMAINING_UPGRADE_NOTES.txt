@@ -1,0 +1,18 @@
+MSME Knowledge Hub – Remaining Upgrade (25 October 2026)
+
+Source: 2026-10-25 AdSense Content Upgrade ZIP.
+
+Updates:
+- PDF report generator now translates its report headings, known metric names, amortisation schedule column headings, EMI moratorium/comparison input labels, generated-on label, and footnote when Hindi is selected.
+- Print / Save as PDF HTML report receives the same Hindi report headings and metrics.
+- Downloaded PDF uses a system sans-serif Hindi font on Android canvas for translated schedule headers.
+- Additional on-screen Hindi labels and translated export validation alerts.
+- Existing calculations, data values, sitemap, navigation, GA4 and IndexNow logic remain unchanged.
+
+Limitations / testing needed:
+- This is not a full Hindi translation of every page or all 13 calculator result messages.
+- The unified PDF export engine currently supports eight calculators; five newer calculators have their own export capabilities or no unified export.
+- Report generator may encounter source labels not yet in the dictionary; please test PDFs for all supported calculators on the Samsung device.
+- Automated checks do not constitute live browser tests or independent full mathematical verification.
+- Do not request AdSense review until live functionality and content quality are checked.
+- Do not overwrite existing root ads.txt; it is intentionally absent from this ZIP.

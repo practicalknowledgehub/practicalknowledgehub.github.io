@@ -1,0 +1,19 @@
+MSME Knowledge Hub — Content Quality Upgrade (25 October 2026)
+
+This is a FULL REPLACEMENT ZIP based on the 20 October consolidated testing release.
+
+UPGRADED
+- Added tailored practical methodology, numerical examples, assumptions, interpretation and review checklist to all 13 calculators.
+- Expanded three short supporting guides: 13-week cash flow, working capital gap and loan repayment capacity.
+- Preserved existing calculator JavaScript, navigation, sitemap, analytics, IndexNow, test page and existing content.
+
+NOT YET COMPLETED OR VERIFIED
+- Complete Hindi translation of all interactive calculator output and PDF reports. The known partial Hindi EMI PDF issue remains.
+- Independent numerical verification of every calculator, including EMI moratorium conventions.
+- Real mobile-browser functional tests, PDF/CSV exports and AdSense re-review.
+- Content editorial verification across every other page.
+
+DO NOT REQUEST ADSENSE REVIEW YET. This is a substantial first content-improvement pass, not a guarantee of approval.
+
+DEPLOYMENT
+Extract the ZIP, upload its contents to the GitHub repository root, preserving directories. Keep your existing ads.txt unchanged. After GitHub Pages deployment, test the calculators and language/PDF outputs.
