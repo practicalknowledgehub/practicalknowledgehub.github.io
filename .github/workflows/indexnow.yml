@@ -1,19 +1,31 @@
 name: IndexNow after Pages deployment
 on:
   deployment_status:
+  workflow_dispatch:
+    inputs:
+      full_site:
+        description: 'Submit all public URLs (catch-up)'
+        required: false
+        type: boolean
+        default: true
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/indexnow.yml'
 permissions:
   contents: read
 jobs:
   submit:
-    if: github.event.deployment_status.state == 'success' && github.event.deployment.environment == 'github-pages'
+    if: (github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success' && github.event.deployment.environment == 'github-pages') || github.event_name == 'workflow_dispatch' || github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Submit changed, new and deleted URLs
+      - name: Submit IndexNow URLs and log each URL
         env:
           INDEXNOW_KEY: "4ec3fcd16c1aca1823bc0826c53a76a4"
           SITE_ORIGIN: https://msmeknowledgehub.com
-          DEPLOY_SHA: ${{ github.event.deployment.sha }}
+          DEPLOY_SHA: ${{ github.event.deployment.sha || github.sha }}
+          INDEXNOW_MODE: ${{ github.event_name == 'push' && 'full' || github.event_name == 'workflow_dispatch' && inputs.full_site && 'full' || 'changed' }}
         run: python3 scripts/indexnow_submit.py
