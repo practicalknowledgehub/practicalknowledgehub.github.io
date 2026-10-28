@@ -1,0 +1,7 @@
+MSME KNOWLEDGE HUB — RELEASE CANDIDATE, 27 OCT 2026
+
+New: All-India government schemes guide with 36 state/UT sections, official central DIC reference directory, selected state portal starting points, searchable directory, funding examples, disclaimer and review date.
+New: GA4 aggregate most-read sidebar optional integration. To activate, configure repository Actions secrets GA4_PROPERTY_ID (numeric GA4 property ID, NOT measurement ID) and GA4_CREDENTIALS_JSON (service-account JSON with GA4 read access). The workflow will only write popular-articles.json when real data is returned. Until then, topic recommendations remain. Do not add credentials to browser JS.
+Retained: homepage six calculators, book resources, four new articles, existing analytics, IndexNow, existing calculators and Hindi scripts from development baseline.
+QA: HTML parsing, JS syntax and link checks are static only. Full browser functional tests, calculator numerical regression, Hindi/PDF/CSV output and live mobile tests NOT completed. Official state links are editorial starting points and should be click-verified.
+IMPORTANT: Package intentionally preserves previous baseline content, but deployment should be deferred until live/mobile regression testing and missing root files comparison. This is not a guarantee of AdSense approval.

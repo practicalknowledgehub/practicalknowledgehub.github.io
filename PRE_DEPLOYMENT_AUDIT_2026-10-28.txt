@@ -1,0 +1,18 @@
+MSME KNOWLEDGE HUB — PRE-DEPLOYMENT AUDIT (28 OCT 2026)
+
+Completed in this working package:
+- Rechecked 61 HTML pages and local references; no broken root-relative links in this ZIP.
+- Verified the four new educational pages and 13 calculator page filenames are included.
+- Improved worked sales/profit example: clear assumptions, staged calculations, downside profit and profit-versus-cash discussion.
+- Removed repetitive prose sections from sales/profit article.
+- Reinforced navigation contrast and keyboard focus indicators.
+- Confirmed GitHub repository access; NO FILES PUSHED OR DEPLOYED.
+
+IMPORTANT: STATIC LINK CHECKS ARE NOT CALCULATOR FUNCTIONAL TESTS.
+Pending before production:
+- Mathematical/functional tests for all 13 calculators including boundary inputs.
+- End-to-end Hindi labels and PDF/CSV validation.
+- Verify government scheme eligibility/amounts against current official sources.
+- Configure GA4_PROPERTY_ID and GA4_CREDENTIALS_JSON secrets if genuine popular rankings are desired; fallback remains recommended articles.
+- Device/browser regression tests and live verification.
+- Final editorial/AdSense policy review. Approval is decided by Google.

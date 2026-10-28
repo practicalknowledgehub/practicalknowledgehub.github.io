@@ -13,3 +13,9 @@
 .msme-global-header .site-nav :focus-visible{outline:2px solid #e5a33e!important;outline-offset:2px}
 .msme-global-header .lang-select{min-height:35px;border:1px solid #cbd7e1;border-radius:6px;background:white;color:#173e64}
 @media(max-width:760px){.msme-global-header .wrap{display:block!important;padding:8px 12px!important}.msme-global-header .brand{display:block!important;margin-bottom:8px!important}.msme-global-header .site-nav{justify-content:flex-start!important;gap:5px!important}.msme-global-header .site-menu{position:static!important}.msme-global-header .site-dropdown{left:8px!important;right:8px!important;top:100%!important;width:calc(100% - 16px)!important;max-width:none!important}}
+
+/* Consolidated mobile navigation contrast and focus accessibility */
+.msme-global-header .site-nav>a,.msme-global-header .site-nav>details>summary{color:#fff!important}
+.msme-global-header .site-dropdown a{color:#173c60!important}
+.msme-global-header a:focus-visible,.msme-global-header summary:focus-visible{outline:3px solid #ffd76d;outline-offset:3px}
+@media(max-width:650px){.site-dropdown{max-width:calc(100vw - 32px)}.msme-global-header .site-nav{overflow-wrap:anywhere}}

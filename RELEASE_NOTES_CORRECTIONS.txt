@@ -1,0 +1,5 @@
+MSME Knowledge Hub corrections candidate — 27 October 2026
+
+Implemented: consistent global header/footer for four new guides; expanded bank rejection guide; tabular sales/profit worked example; removed duplicate book promo blocks where detected; homepage recommended sidebar moved alongside featured calculators in desktop layout; navigation contrast overrides.
+
+NOT VERIFIED: all 13 calculator mathematical outputs, Hindi PDF/CSV output, GA4 Data API popularity integration, full browser/mobile regression, state-by-state scheme eligibility and official portal verification. Keep live site unchanged until these are tested.

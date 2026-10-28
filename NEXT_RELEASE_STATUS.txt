@@ -1,0 +1,15 @@
+DEVELOPMENT BUILD — DO NOT DEPLOY AS FINAL RELEASE
+27 October 2026
+
+Completed in this revision:
+- Expanded existing government schemes page with Tamil Nadu NEEDS, UYEGP, AABCS, state incentives, subsidy-versus-guarantee guidance, worked funding example, and official verification links.
+- Added editorial-methodology and accuracy caveats to About page.
+- Preserved previous partial build: six homepage featured calculators, four new article drafts, book resources, topic-based article suggestions.
+
+Still pending before final release:
+- Verify individual Tamil Nadu scheme numerical terms against current official government orders.
+- Real GA4 popularity feed (requires authenticated secure aggregation, not browser secrets).
+- Full functional and mathematical testing of all 13 calculators.
+- Complete Hindi translation and PDF/CSV audit across all 13 calculators.
+- Mobile device/browser testing and live post-deployment verification.
+- Final AdSense content review and editorial proofreading.

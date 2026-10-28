@@ -1,0 +1,5 @@
+REVIEW BUILD — NOT DEPLOYED
+Navigation stylesheet/script changed to relative paths for local ZIP preview.
+22 additional state/UT government portals added as starting points, NOT live-verified links.
+Central district profile link retained and explicitly marked supplementary.
+Further official link verification, calculator functional testing, PDF/Hindi tests and live HTTPS regression required before production deployment.
