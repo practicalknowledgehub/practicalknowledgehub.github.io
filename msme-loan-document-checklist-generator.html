@@ -50,11 +50,87 @@ function valid(){if(!generated||signature!==signatureNow()){invalidate();$("erro
 function clean(s){return String(s).replace(/₹/g,"Rs. ").replace(/[–—]/g,"-").replace(/[‘’]/g,"'").replace(/[“”]/g,'"').normalize("NFKD").replace(/[^\x20-\x7E]/g,"?")}
 function esc(s){return clean(s).replace(/\\/g,"\\\\").replace(/\(/g,"\\(").replace(/\)/g,"\\)")}
 function wrap(s,n){const words=clean(s).split(/\s+/);const out=[];let line="";for(let word of words){while(word.length>n){if(line){out.push(line);line=""}out.push(word.slice(0,n));word=word.slice(n)}if((line+" "+word).trim().length>n&&line){out.push(line);line=""}if(word)line+=(line?" ":"")+word}if(line)out.push(line);return out.length?out:[""]}
-function buildPdf(){const pageW=595.28,pageH=841.89,margin=27,contentW=pageW-2*margin,foot=32;const pages=[];let cmd=[],y=0;const text=(s,x,baseline,size=9,bold=false,color="0.13 0.20 0.30")=>{cmd.push(color+" rg BT /"+(bold?"F2":"F1")+" "+size+" Tf 1 0 0 1 "+x.toFixed(2)+" "+(pageH-baseline).toFixed(2)+" Tm ("+esc(s)+") Tj ET")};const rect=(x,top,w,h,fill)=>{if(fill)cmd.push(fill+" rg "+x.toFixed(2)+" "+(pageH-top-h).toFixed(2)+" "+w.toFixed(2)+" "+h.toFixed(2)+" re f");cmd.push("0.72 0.79 0.85 RG 0.6 w "+x.toFixed(2)+" "+(pageH-top-h).toFixed(2)+" "+w.toFixed(2)+" "+h.toFixed(2)+" re S")};const line=(x1,t1,x2,t2)=>cmd.push("0.75 0.81 0.87 RG 0.6 w "+x1+" "+(pageH-t1)+" m "+x2+" "+(pageH-t2)+" l S");function start(){cmd=[];const first=pages.length===0;cmd.push("0.06 0.22 0.42 rg 0 "+(pageH-(first?46:30))+" "+pageW+" "+(first?46:30)+" re f");text("MSME KNOWLEDGE HUB",margin,first?18:20,first?13:11,true,"1 1 1");text("www.msmeknowledgehub.com",margin,first?35:20,first?9:8,false,"1 1 1");if(!first){y=42;return}text("MSME LOAN DOCUMENT CHECKLIST",margin,64,13,true);const nm=wrap("Applicant: "+$("name").value.trim(),100);let t=78;for(const v of nm){text(v,margin,t,8);t+=10}text("Proposed Loan Amount: Rs. "+Number($("amount").value).toLocaleString("en-IN"),margin,t+1,8);text("Constitution: "+val("constitution")+" | Business: "+val("stage")+" | Facility: "+$("loan").selectedOptions[0].text,margin,t+12,8);text("Generated: "+new Date().toLocaleDateString("en-IN"),margin,t+23,8);y=t+31}
-function end(){const num=pages.length+1;line(margin,pageH-foot,pageW-margin,pageH-foot);text("MSME Knowledge Hub | www.msmeknowledgehub.com",margin,pageH-22,8);text("Indicative checklist - confirm lender requirements.",margin,pageH-11,7);text("Page "+num,pageW-margin-42,pageH-21,8);pages.push(cmd.join("\n"))}
-function next(){end();start()}
-start();const applicable=rows.filter(x=>selected.has(x.id));for(const sec of sections){const group=applicable.filter(x=>x.section===sec);if(!group.length)continue;if(y+42>pageH-foot)next();text(sec,margin,y+11,9.5,true);y+=15;function tableHeader(){rect(margin,y,contentW,17,"0.91 0.94 0.97");text("DOCUMENT",margin+5,y+12,7,true);text("OBTAINED",margin+303,y+12,6.5,true);text("PENDING",margin+375,y+12,6.5,true);text("REMARKS",margin+444,y+12,7,true);y+=17}tableHeader();for(const item of group){const lines=wrap(item.label,65),h=Math.max(22,lines.length*9+7);if(y+h>pageH-foot-7){next();text(sec+" (continued)",margin,y+11,9,true);y+=15;tableHeader()}rect(margin,y,contentW,h);line(margin+295,y,margin+295,y+h);line(margin+367,y,margin+367,y+h);line(margin+437,y,margin+437,y+h);lines.forEach((v,i)=>text(v,margin+5,y+12+i*9,7.7));rect(margin+324,y+h/2-4,8,8);rect(margin+395,y+h/2-4,8,8);y+=h+1}y+=6}
-end();const objects=[null],push=s=>{objects.push(s);return objects.length-1};const font=push("<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>"),bold=push("<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>");const pageIds=[],contentIds=[],annotationIds=[];for(const stream of pages){const bytes=new TextEncoder().encode(stream);contentIds.push(push("<< /Length "+bytes.length+" >>\nstream\n"+stream+"\nendstream"));pageIds.push(push(""));annotationIds.push(push(""))}const rootPages=push("");for(let i=0;i<pageIds.length;i++)objects[annotationIds[i]]="<< /Type /Annot /Subtype /Link /Rect ["+margin+" 5 330 48] /Border [0 0 0] /A << /S /URI /URI (https://msmeknowledgehub.com/) >> >>";objects[pageIds[i]]="<< /Type /Page /Parent "+rootPages+" 0 R /Annots ["+annotationIds[i]+" 0 R] /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 "+font+" 0 R /F2 "+bold+" 0 R >> >> /Contents "+contentIds[i]+" 0 R >>";objects[rootPages]="<< /Type /Pages /Kids ["+pageIds.map(i=>i+" 0 R").join(" ")+"] /Count "+pageIds.length+" >>";const catalog=push("<< /Type /Catalog /Pages "+rootPages+" 0 R >>");let pdf="%PDF-1.4\n",offsets=[0];for(let i=1;i<objects.length;i++){offsets.push(new TextEncoder().encode(pdf).length);pdf+=i+" 0 obj\n"+objects[i]+"\nendobj\n"}const xref=new TextEncoder().encode(pdf).length;pdf+="xref\n0 "+objects.length+"\n0000000000 65535 f \n";for(let i=1;i<objects.length;i++)pdf+=String(offsets[i]).padStart(10,"0")+" 00000 n \n";pdf+="trailer\n<< /Size "+objects.length+" /Root "+catalog+" 0 R >>\nstartxref\n"+xref+"\n%%EOF";return new Blob([pdf],{type:"application/pdf"})}
+function buildPdf(){
+ const W=595.28,H=841.89,m=29,cw=W-2*m,bottom=795;
+ const pages=[];let commands=[],y=0;
+ const txt=(s,x,top,size=8,bold=false,color="0.13 0.20 0.30")=>commands.push(color+" rg BT /"+(bold?"F2":"F1")+" "+size+" Tf 1 0 0 1 "+x.toFixed(2)+" "+(H-top).toFixed(2)+" Tm ("+esc(s)+") Tj ET");
+ const fill=(x,top,w,h,rgb)=>commands.push(rgb+" rg "+x+" "+(H-top-h)+" "+w+" "+h+" re f");
+ const stroke=(x,top,w,h)=>commands.push("0.72 0.79 0.85 RG 0.55 w "+x+" "+(H-top-h)+" "+w+" "+h+" re S");
+ const rule=(x,top,x2,top2)=>commands.push("0.72 0.79 0.85 RG 0.5 w "+x+" "+(H-top)+" m "+x2+" "+(H-top2)+" l S");
+ function startPage(){
+  commands=[];
+  const first=pages.length===0;
+  fill(0,0,W,first?40:30,"0.06 0.22 0.42");
+  txt("MSME KNOWLEDGE HUB",m,first?18:19,first?13:11,true,"1 1 1");
+  txt("www.msmeknowledgehub.com",first?m:m+180,first?34:19,first?9:8,false,"1 1 1");
+  if(!first){y=45;return}
+  txt("MSME LOAN DOCUMENT CHECKLIST",m,59,13,true);
+  const nameLines=wrap("Applicant: "+$("name").value.trim()+"  |  Proposed Loan: Rs. "+Number($("amount").value).toLocaleString("en-IN"),110);
+  let top=74;for(const line of nameLines){txt(line,m,top,8);top+=11}
+  const c={proprietor:"Proprietorship",partnership:"Partnership Firm",llp:"LLP",company:"Company"}[val("constitution")];
+  const detail=c+" | "+(val("stage")==="new"?"New Business":"Existing Business")+" | "+$("loan").selectedOptions[0].text+" | Collateral: "+(val("security")==="yes"?"Yes":"No");
+  for(const line of wrap(detail,112)){txt(line,m,top,8);top+=11}
+  txt("Generated: "+new Date().toLocaleDateString("en-IN"),m,top,8);
+  y=top+13;
+ }
+ function finishPage(){
+  rule(m,802,W-m,802);
+  txt("Generated by MSME Knowledge Hub | www.msmeknowledgehub.com",m,814,7.5);
+  txt("Indicative checklist only. Confirm requirements with the lending bank.",m,825,7);
+  txt("Page "+(pages.length+1),W-m-43,814,7.5);
+  pages.push(commands.join("\n"));
+ }
+ function newPage(){finishPage();startPage()}
+ startPage();
+ const applicable=rows.filter(x=>selected.has(x.id));
+ for(const sec of sections){
+  const items=applicable.filter(x=>x.section===sec);if(!items.length)continue;
+  if(y+49>bottom)newPage();
+  function sectionTitle(continued=false){
+   txt(sec+(continued?" (continued)":""),m,y+11,9.5,true);y+=17;
+   fill(m,y,cw,16,"0.91 0.94 0.97");stroke(m,y,cw,16);
+   txt("DOCUMENT",m+5,y+11,7,true);txt("OBTAINED",m+309,y+11,6.5,true);
+   txt("PENDING",m+383,y+11,6.5,true);txt("REMARKS",m+456,y+11,7,true);y+=16;
+  }
+  sectionTitle();
+  for(const item of items){
+   const lines=wrap(item.label,65),h=Math.max(22,lines.length*10+7);
+   if(y+h+2>bottom){newPage();sectionTitle(true)}
+   stroke(m,y,cw,h);rule(m+300,y,m+300,y+h);rule(m+374,y,m+374,y+h);rule(m+447,y,m+447,y+h);
+   lines.forEach((line,i)=>txt(line,m+5,y+13+i*10,8));
+   stroke(m+332,y+h/2-4.5,9,9);stroke(m+406,y+h/2-4.5,9,9);
+   y+=h;
+  }
+  y+=7;
+ }
+ finishPage();
+ const objs=[null],push=o=>{objs.push(o);return objs.length-1};
+ const font=push("<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>");
+ const bold=push("<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>");
+ const pids=[],cids=[],aids=[];
+ for(const stream of pages){
+  cids.push(push("<< /Length "+new TextEncoder().encode(stream).length+" >>\nstream\n"+stream+"\nendstream"));
+  pids.push(push(""));aids.push([push(""),push("")]);
+ }
+ const parent=push("");
+ for(let i=0;i<pids.length;i++){
+  const first=i===0;
+  const headerRect=first?[m,H-38,245,H-21]:[m+175,H-23,m+355,H-10];
+  const footerRect=[m+169,H-820,m+380,H-803];
+  for(const [j,r] of [headerRect,footerRect].entries()){
+   objs[aids[i][j]]="<< /Type /Annot /Subtype /Link /Rect ["+r.join(" ")+"] /Border [0 0 0] /A << /S /URI /URI (https://msmeknowledgehub.com/) >> >>";
+  }
+  objs[pids[i]]="<< /Type /Page /Parent "+parent+" 0 R /MediaBox [0 0 "+W+" "+H+"] /Annots ["+aids[i].join(" 0 R ")+" 0 R] /Resources << /Font << /F1 "+font+" 0 R /F2 "+bold+" 0 R >> >> /Contents "+cids[i]+" 0 R >>";
+ }
+ objs[parent]="<< /Type /Pages /Kids ["+pids.map(i=>i+" 0 R").join(" ")+"] /Count "+pids.length+" >>";
+ const catalog=push("<< /Type /Catalog /Pages "+parent+" 0 R >>");
+ let pdf="%PDF-1.4\n";const offsets=[0],encoder=new TextEncoder();
+ for(let i=1;i<objs.length;i++){offsets[i]=encoder.encode(pdf).length;pdf+=i+" 0 obj\n"+objs[i]+"\nendobj\n"}
+ const xref=encoder.encode(pdf).length;pdf+="xref\n0 "+objs.length+"\n0000000000 65535 f \n";
+ for(let i=1;i<objs.length;i++)pdf+=String(offsets[i]).padStart(10,"0")+" 00000 n \n";
+ pdf+="trailer\n<< /Size "+objs.length+" /Root "+catalog+" 0 R >>\nstartxref\n"+xref+"\n%%EOF";
+ return new Blob([pdf],{type:"application/pdf"});
+}
 $("pdf").onclick=()=>{if(!valid())return;try{const blob=buildPdf(),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="MSME-Loan-Checklist-"+($("name").value.trim().replace(/[^a-z0-9]+/gi,"-").slice(0,40)||"Applicant")+".pdf";document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);$("pdf-note").textContent="PDF created. Check your browser's Downloads folder."}catch(e){$("pdf-note").textContent="PDF could not be created: "+e.message+". Try Print / Save as PDF."}};
 $("print").onclick=()=>{if(!valid())return;const w=window.open("","_blank");if(!w){$("pdf-note").textContent="Please allow pop-ups to use Print / Save as PDF.";return}const escH=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));const items=rows.filter(x=>selected.has(x.id));w.document.write('<!doctype html><html><head><title>MSME Loan Checklist</title><style>body{font:12px Arial;margin:15mm;color:#203348}header{background:#103c72;color:white;padding:14px}h2{font-size:15px}table{width:100%;border-collapse:separate;border-spacing:0 3px;table-layout:fixed}th,td{border:1px solid #b6c8d8;padding:9px 6px;text-align:left;overflow-wrap:anywhere}th{background:#e9eff5}tr{break-inside:avoid}footer{position:fixed;bottom:0;font-size:10px;border-top:1px solid #bbb;width:100%}@page{size:A4;margin:15mm}</style></head><body><header><strong>MSME KNOWLEDGE HUB</strong><div>www.msmeknowledgehub.com</div></header><h1>MSME Loan Document Checklist</h1><p>Applicant: '+escH($("name").value)+' | Proposed loan: Rs. '+Number($("amount").value).toLocaleString("en-IN")+'</p>');for(const sec of sections){const g=items.filter(x=>x.section===sec);if(!g.length)continue;w.document.write('<h2>'+escH(sec)+'</h2><table><thead><tr><th style="width:52%">Document</th><th>Obtained</th><th>Pending</th><th>Remarks</th></tr></thead><tbody>'+g.map(x=>'<tr><td>'+escH(x.label)+'</td><td>☐</td><td>☐</td><td>&nbsp;</td></tr>').join("")+'</tbody></table>')}w.document.write('<footer>Generated by MSME Knowledge Hub | www.msmeknowledgehub.com | Indicative checklist only</footer></body></html>');w.document.close();w.focus();w.print()};
 </script><script defer src="/msme-test-mode.js"></script></body></html>
