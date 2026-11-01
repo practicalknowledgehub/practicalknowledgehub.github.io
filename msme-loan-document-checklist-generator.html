@@ -8,20 +8,35 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1787256927900357" crossorigin="anonymous"></script>
 <style>
 :root{--blue:#103c72;--line:#dbe5ef;--bg:#f5f8fc}*{box-sizing:border-box}body{font:16px/1.5 system-ui,Arial,sans-serif;color:#203348;background:var(--bg);margin:0;overflow-wrap:anywhere}header{background:var(--blue);color:#fff;padding:22px 16px}.msme-global-header{padding:0!important;background:#fff!important;color:#173c60!important}.msme-global-header a{color:#173c60!important}.msme-global-header .wrap{max-width:1100px;margin:auto;padding:12px}.msme-global-header .brand{font-weight:800}html,body{max-width:100%;overflow-x:clip}header a{color:#fff}header .inner,main,footer{max-width:1040px;margin:auto}h1{font-size:clamp(1.5rem,5vw,2.2rem);margin:8px 0}h2{font-size:1.25rem;color:var(--blue)}h3{font-size:1.05rem;color:var(--blue);margin:18px 0 8px}main{padding:18px 12px 50px}section{background:#fff;border:1px solid var(--line);border-radius:12px;padding:clamp(13px,3vw,22px);margin:14px 0;min-width:0}label{font-weight:600;display:block;margin-bottom:5px}.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px}.radio-set{display:flex;flex-wrap:wrap;gap:8px 20px;border:0;padding:0;margin:0;min-width:0}.radio-set legend{font-weight:700;margin-bottom:8px}.radio-set label{display:inline-flex;gap:8px;align-items:center;font-weight:500;margin:0;cursor:pointer}input[type=radio],input[type=checkbox]{width:19px;height:19px;flex:none;accent-color:#145b97}input[type=text],input[type=number],select{font:inherit;width:100%;max-width:100%;padding:10px;border:1px solid #9fb3c5;border-radius:7px;background:#fff}button{font:inherit;font-weight:650;border:0;border-radius:8px;padding:11px 15px;background:#1263a1;color:#fff;cursor:pointer}button.secondary{background:#e7eff8;color:var(--blue)}button:disabled{opacity:.45;cursor:not-allowed}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #e9a82e;outline-offset:2px}.buttons{display:flex;flex-wrap:wrap;gap:9px;margin-top:15px}.note{font-size:.9rem;color:#52677b}.doc{display:flex;align-items:flex-start;gap:12px;border-bottom:1px solid #e6edf3;padding:11px 0;min-width:0}.doc label{font-weight:450;margin:0;flex:1;min-width:0}.doc button{padding:4px 8px;font-size:.8rem}.count{font-weight:750;color:var(--blue)}.custom{display:flex;flex-wrap:wrap;gap:9px}.custom input{flex:1;min-width:180px}.error{color:#9c1f1f;font-weight:650}.hidden{display:none!important}footer{padding:15px;color:#52677b}a{color:#125d9d}@media(max-width:450px){.custom button{width:100%}.buttons button{flex:1 1 100%}}
+
+/* Shared field order on mobile and desktop; only the column count changes. */
+.fields{grid-template-columns:minmax(0,1fr);gap:16px;align-items:start}
+.fields>div{min-width:0;align-self:start}
+.fields .radio-set{display:block;min-width:0}
+.fields .radio-set legend{margin-bottom:9px}
+.fields .radio-set label{display:inline-flex;vertical-align:top;margin:0 20px 9px 0;max-width:100%;align-items:flex-start;overflow-wrap:anywhere}
+.fields .radio-set input{margin-top:3px}
+.field-loans .radio-set{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:14px;row-gap:10px}
+.field-loans .radio-set legend{grid-column:1/-1}
+.field-loans .radio-set label{margin:0;min-width:0}
+.field-loans .radio-set label:last-child{grid-column:1/-1}
+.field-subtype:has(> .hidden:only-child){display:none}
+@media(min-width:800px){.fields{grid-template-columns:repeat(2,minmax(0,1fr));gap:19px 28px}.field-loans,.field-subtype{grid-column:1/-1}.field-loans .radio-set{grid-template-columns:repeat(4,minmax(0,1fr))}.field-loans .radio-set label:last-child{grid-column:1/3}}
+@media(max-width:799px){.msme-global-header .wrap{display:flex;flex-wrap:wrap;gap:8px}.msme-global-header .site-nav{width:100%;justify-content:flex-start}}
 @media print{header,.no-print,footer{display:none!important}body{background:#fff}main{padding:0}section{border:0;margin:0;padding:0}}
 </style></head><body>
 <header class="msme-global-header"><div class="wrap"><a class="brand" href="/">MSME Knowledge Hub</a><nav aria-label="Main navigation" class="site-nav"><a class="site-nav-link" data-hi="होम" href="/">Home</a><details class="site-menu"><summary data-hi="ऑनलाइन ऋण आवेदन">Apply Loan Online</summary><div class="site-dropdown"><a data-hi="एमएसएमई ऋण आवेदन" href="/msme-loan-apply-online.html">MSME Loan Application</a><a data-hi="पात्रता और दस्तावेज" href="/msme-loan-eligibility-documents.html">Loan Eligibility &amp; Documents</a><a data-hi="कार्यशील पूंजी पात्रता" href="/working-capital-loan-eligibility.html">Working Capital Eligibility</a><a data-hi="सीजीटीएमएसई गाइड" href="/cgtmse-loan-scheme-guide.html">CGTMSE Guide</a><a data-hi="पीएमईजीपी योजना" href="/pmegp-loan-scheme-2026.html">PMEGP Loan Scheme</a><a data-hi="संपत्ति पर ऋण" href="/loan-against-property-for-business.html">Loan Against Property</a><a data-hi="मशीनरी ऋण गाइड" href="/msme-machinery-loan-guide.html">Machinery Loan Guide</a><a data-hi="वाणिज्यिक संपत्ति ऋण पात्रता" href="/commercial-property-loan-eligibility.html">Commercial Property Loan Eligibility</a></div></details><details class="site-menu"><summary data-hi="लेख">Articles</summary><div class="site-dropdown"><a data-hi="सभी लेख" href="/articles.html">All Articles</a><a data-hi="वाणिज्यिक संपत्ति खरीद ऋण" href="/commercial-property-purchase-loan-msme-india.html">Commercial Property Purchase Loans</a><a data-hi="एमएसएमई ऋण ब्याज दरें" href="/msme-loan-interest-rates-how-to-get-better-rate.html">MSME Loan Interest Rates</a><a data-hi="ईएमआई, PED और लचीला पुनर्भुगतान" href="/msme-loan-repayment-schedule-emi-ped-flexible.html">EMI vs PED vs Flexible Repayment</a><a data-hi="13-सप्ताह नकदी प्रवाह गाइड" href="/13-week-cash-flow-forecast-msme.html">13-Week Cash Flow Forecast Guide</a><a data-hi="कार्यशील पूंजी अंतर गाइड" href="/working-capital-gap-msme-guide.html">Working Capital Gap Guide</a><a data-hi="ऋण चुकौती क्षमता गाइड" href="/loan-repayment-capacity-msme-guide.html">Loan Repayment Capacity Guide</a><a data-hi="नकदी रूपांतरण चक्र गाइड" href="/cash-conversion-cycle-msme-guide.html">Cash Conversion Cycle Guide</a><a data-hi="ब्रेक-ईवन विश्लेषण गाइड" href="/break-even-analysis-msme-guide.html">Break-Even Analysis Guide</a></div></details><details class="site-menu"><summary data-hi="कैलकुलेटर">Calculators</summary><div class="site-dropdown"><a data-hi="सभी कैलकुलेटर" href="/calculators.html">All Calculators</a><a data-hi="ऋण ईएमआई" href="/msme-business-loan-emi-calculator.html">Loan EMI</a><a data-hi="समान मूलधन (PED)" href="/ped-calculator.html">Principal Equally Distributed (PED)</a><a data-hi="निर्धारित पुनर्भुगतान" href="/negotiated-repayment-calculator.html">Negotiated Repayment</a><a data-hi="व्यवसाय ऋण पात्रता" href="/business-loan-eligibility-calculator.html">Business Loan Eligibility</a><a data-hi="कार्यशील पूंजी" href="/msme-working-capital-calculator.html">Working Capital</a><a data-hi="ऋण सेवा कवरेज" href="/msme-dscr-calculator.html">DSCR</a><a data-hi="आहरण शक्ति" href="/msme-drawing-power-calculator.html">Drawing Power</a><a data-hi="कैश क्रेडिट ब्याज" href="/cash-credit-interest-calculator.html">Cash Credit Interest</a><a data-hi="नकदी रूपांतरण चक्र" href="/cash-conversion-cycle-calculator.html">Cash Conversion Cycle</a><a data-hi="ब्रेक-ईवन बिक्री" href="/break-even-sales-calculator.html">Break-Even Sales</a><a data-hi="13-सप्ताह नकदी प्रवाह" href="/13-week-cash-flow-calculator.html">13-Week Cash Flow Forecast</a><a data-hi="कार्यशील पूंजी अंतर" href="/working-capital-gap-calculator.html">Working Capital Gap</a><a data-hi="ऋण चुकौती क्षमता" href="/loan-repayment-capacity-calculator.html">Loan Repayment Capacity</a></div></details><details class="site-menu"><summary data-hi="टूल्स">Tools</summary><div class="site-dropdown"><a href="/tools.html">All Tools</a><a href="/msme-loan-document-checklist-generator.html">Loan Document Checklist Generator</a></div></details><a class="site-nav-link" data-hi="हमारी पुस्तक" href="/msme-guide.html">Our Book</a><a class="site-nav-link" data-hi="हमारे बारे में" href="/about.html">About</a><a class="site-nav-link" data-hi="संपर्क" href="/contact.html">Contact</a><select aria-label="Website language" class="lang-select" id="site-language"><option value="en">English</option><option value="hi">हिन्दी</option></select></nav></div></header><header><div class="inner"><h1>MSME Loan Document Checklist Generator</h1><p>Select applicable loan documents and generate a printable, bank-style PDF.</p></div></header>
 <main>
 <section><h2>1. Applicant and Loan Details</h2><div class="fields">
-<div><label for="name">Applicant / Business Name *</label><input id="name" type="text" maxlength="120" placeholder="e.g. ABC Enterprises"></div>
-<div><label for="amount">Proposed Loan Amount (₹) *</label><input id="amount" type="number" min="1" step="1" placeholder="e.g. 2500000"><div id="amount-words" class="note" aria-live="polite" style="margin-top:6px"></div></div>
-<fieldset class="radio-set"><legend>Business Constitution</legend><label><input type="radio" name="constitution" value="proprietor" checked>Proprietorship</label><label><input type="radio" name="constitution" value="partnership">Partnership</label><label><input type="radio" name="constitution" value="llp">LLP</label><label><input type="radio" name="constitution" value="company">Company</label></fieldset>
-<fieldset class="radio-set"><legend>Business Status</legend><label><input type="radio" name="stage" value="new">New</label><label><input type="radio" name="stage" value="existing" checked>Existing</label></fieldset>
-<fieldset class="radio-set"><legend>Type of Loan / Facility (select one or more)</legend><label><input type="checkbox" name="loan" value="wc" checked>Working Capital / CC / OD</label><label><input type="checkbox" name="loan" value="term">Term Loan / Machinery / Construction</label><label><input type="checkbox" name="loan" value="bg">Bank Guarantee (BG)</label><label><input type="checkbox" name="loan" value="lc">Letter of Credit (LC)</label><label><input type="checkbox" name="loan" value="property">Property-Based Business Loan (standalone)</label></fieldset><fieldset class="radio-set hidden" id="bg-options"><legend>BG Purpose</legend><label><input type="radio" name="bgpurpose" value="Performance" checked>Performance</label><label><input type="radio" name="bgpurpose" value="Financial" >Financial</label><label><input type="radio" name="bgpurpose" value="Bid / EMD" >Bid / EMD</label><label><input type="radio" name="bgpurpose" value="Advance Payment" >Advance Payment</label><label><input type="radio" name="bgpurpose" value="Other" >Other</label></fieldset><fieldset class="radio-set hidden" id="lc-options"><legend>LC Type</legend><label><input type="radio" name="lctype" value="inland" checked>Inland</label><label><input type="radio" name="lctype" value="import">Import</label></fieldset>
-<fieldset class="radio-set"><legend>Collateral Security Offered?</legend><label><input type="radio" name="security" value="yes">Yes</label><label><input type="radio" name="security" value="no" checked>No</label></fieldset>
-<fieldset class="radio-set" id="takeover-field"><legend>Takeover of Existing Credit Facilities?</legend><label><input type="radio" name="takeover" value="yes">Yes</label><label><input type="radio" name="takeover" value="no" checked>No</label></fieldset>
-<fieldset class="radio-set"><legend>Bank Statement Period</legend><label><input type="radio" name="months" value="6">6 Months</label><label><input type="radio" name="months" value="12" checked>12 Months</label></fieldset>
-</div><div class="buttons"><button id="generate">Generate Checklist</button><button id="reset" class="secondary">Start New Checklist</button></div><p id="error" class="error" role="alert"></p>
+<div class="field-name"><label for="name">Applicant / Business Name *</label><input id="name" type="text" maxlength="120" placeholder="e.g. ABC Enterprises"></div>
+<div class="field-amount"><label for="amount">Proposed Loan Amount (₹) *</label><input id="amount" type="number" min="1" step="1" placeholder="e.g. 2500000"><div id="amount-words" class="note" aria-live="polite" style="margin-top:6px"></div></div>
+<div class="field-constitution"><fieldset class="radio-set"><legend>Business Constitution</legend><label><input type="radio" name="constitution" value="proprietor" checked>Proprietorship</label><label><input type="radio" name="constitution" value="partnership">Partnership</label><label><input type="radio" name="constitution" value="llp">LLP</label><label><input type="radio" name="constitution" value="company">Company</label></fieldset></div>
+<div class="field-stage"><fieldset class="radio-set"><legend>Business Status</legend><label><input type="radio" name="stage" value="new">New</label><label><input type="radio" name="stage" value="existing" checked>Existing</label></fieldset></div>
+<div class="field-security"><fieldset class="radio-set"><legend>Collateral Security Offered?</legend><label><input type="radio" name="security" value="yes">Yes</label><label><input type="radio" name="security" value="no" checked>No</label></fieldset></div>
+<div class="field-takeover"><fieldset class="radio-set" id="takeover-field"><legend>Takeover of Existing Credit Facilities?</legend><label><input type="radio" name="takeover" value="yes">Yes</label><label><input type="radio" name="takeover" value="no" checked>No</label></fieldset></div>
+<div class="field-months"><fieldset class="radio-set"><legend>Bank Statement Period</legend><label><input type="radio" name="months" value="6">6 Months</label><label><input type="radio" name="months" value="12" checked>12 Months</label></fieldset></div>
+<div class="field-loans"><fieldset class="radio-set"><legend>Type of Loan / Facility (select one or more)</legend><label><input type="checkbox" name="loan" value="wc" checked>Working Capital / CC / OD</label><label><input type="checkbox" name="loan" value="term">Term Loan / Machinery / Construction</label><label><input type="checkbox" name="loan" value="bg">Bank Guarantee (BG)</label><label><input type="checkbox" name="loan" value="lc">Letter of Credit (LC)</label><label><input type="checkbox" name="loan" value="property">Property-Based Business Loan (standalone)</label></fieldset></div>
+<div class="field-subtype"><fieldset class="radio-set hidden" id="bg-options"><legend>BG Purpose</legend><label><input type="radio" name="bgpurpose" value="Performance" checked>Performance</label><label><input type="radio" name="bgpurpose" value="Financial" >Financial</label><label><input type="radio" name="bgpurpose" value="Bid / EMD" >Bid / EMD</label><label><input type="radio" name="bgpurpose" value="Advance Payment" >Advance Payment</label><label><input type="radio" name="bgpurpose" value="Other" >Other</label></fieldset><fieldset class="radio-set hidden" id="lc-options"><legend>LC Type</legend><label><input type="radio" name="lctype" value="inland" checked>Inland</label><label><input type="radio" name="lctype" value="import">Import</label></fieldset></div></div><div class="buttons"><button id="generate">Generate Checklist</button><button id="reset" class="secondary">Start New Checklist</button></div><p id="error" class="error" role="alert"></p>
 <p class="note">Indicative requirements vary by bank, loan product, applicant and regulation. Select only documents relevant to your proposal. No document uploads are required.</p></section>
 <section id="result" class="hidden"><h2>2. Applicable Documents</h2><p id="summary" class="note"></p><p id="progress" class="count" aria-live="polite"></p><p class="note">Checked means applicable (not obtained). Items are preselected based on your details. Untick anything not required. Only checked documents appear in the PDF.</p><div id="list"></div>
 <div class="no-print"><h3>Add Additional Documents</h3><div class="custom"><input id="extra" type="text" maxlength="180" aria-label="Additional document description" placeholder="e.g. Supplier agreement"><button id="add" class="secondary">Add Document</button></div>
@@ -65,24 +80,32 @@ function buildPdf(){
  function startPage(){
   commands=[];
   const first=pages.length===0;
-  fill(0,0,W,first?40:30,"0.06 0.22 0.42");
-  txt("MSME KNOWLEDGE HUB",m,first?18:19,first?13:11,true,"1 1 1");
-  txt("www.msmeknowledgehub.com",first?m:m+180,first?34:19,first?9:8,false,"1 1 1");
-  if(!first){y=45;return}
-  txt("MSME LOAN DOCUMENT CHECKLIST",m,59,13,true);
-  const nameLines=wrap("Applicant: "+$("name").value.trim()+"  |  Proposed Loan: Rs. "+Number($("amount").value).toLocaleString("en-IN"),110);
-  let top=74;for(const line of nameLines){txt(line,m,top,8);top+=11}
-  const c={proprietor:"Proprietorship",partnership:"Partnership Firm",llp:"LLP",company:"Company"}[val("constitution")];
-  const detail="Constitution: "+c+" | Business: "+(val("stage")==="new"?"New":"Existing")+" | "+loanText()+" | Collateral: "+(val("security")==="yes"?"Yes":"No");
-  for(const line of wrap(detail,112)){txt(line,m,top,8);top+=11}
-  txt("Generated: "+new Intl.DateTimeFormat("en-IN",{timeZone:"Asia/Kolkata",day:"2-digit",month:"2-digit",year:"numeric",hour:"numeric",minute:"2-digit",hour12:true}).format(new Date())+" IST",m,top,8);
-  y=top+13;
+  fill(0,0,W,43,"0.06 0.22 0.42");
+  txt("MSME KNOWLEDGE HUB",m,19,12,true,"1 1 1");
+  txt("www.msmeknowledgehub.com",m,34,8,false,"1 1 1");
+  txt("MSME LOAN DOCUMENT",W-m-172,19,10,true,"1 1 1");
+  txt("CHECKLIST",W-m-172,32,10,true,"1 1 1");
+  let top=57;
+  const applicant=$("name").value.trim(),amount="Rs. "+Number($("amount").value).toLocaleString("en-IN");
+  if(first){
+   txt("Applicant:",m,top,9);top+=14;
+   for(const line of wrap(applicant,76)){txt(line,m,top,12,true);top+=15}
+   txt("Proposed Loan Amount: "+amount,m,top,12,true);top+=19;
+   const constitution={proprietor:"Proprietorship",partnership:"Partnership Firm",llp:"LLP",company:"Company"}[val("constitution")];
+   const details="Constitution: "+constitution+" | Business: "+(val("stage")==="new"?"New":"Existing")+" | Facilities: "+loanText()+" | Collateral: "+(val("security")==="yes"?"Yes":"No");
+   for(const line of wrap(details,106)){txt(line,m,top,8);top+=11}
+   txt("Generated: "+new Intl.DateTimeFormat("en-IN",{timeZone:"Asia/Kolkata",day:"2-digit",month:"2-digit",year:"numeric",hour:"numeric",minute:"2-digit",hour12:true}).format(new Date())+" IST",m,top,8);top+=13;
+  }else{
+   for(const line of wrap("Applicant: "+applicant+" | Proposed Loan: "+amount,105)){txt(line,m,top,8.5,true);top+=12}
+   top+=4;
+  }
+  y=top+4;
  }
  function finishPage(){
   rule(m,802,W-m,802);
   txt("Generated by MSME Knowledge Hub | www.msmeknowledgehub.com",m,814,7.5);
   txt("Indicative checklist only. Confirm requirements with the lending bank.",m,825,7);
-  txt("Page "+(pages.length+1),W-m-43,814,7.5);
+  txt("Page "+(pages.length+1)+" of {TOTAL_PAGES}",W-m-67,814,7.5);
   pages.push(commands.join("\n"));
  }
  function newPage(){finishPage();startPage()}
@@ -109,6 +132,7 @@ function buildPdf(){
   y+=7;
  }
  finishPage();
+ for(let i=0;i<pages.length;i++)pages[i]=pages[i].replace("{TOTAL_PAGES}",String(pages.length));
  const objs=[null],push=o=>{objs.push(o);return objs.length-1};
  const font=push("<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>");
  const bold=push("<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>");
@@ -120,7 +144,7 @@ function buildPdf(){
  const parent=push("");
  for(let i=0;i<pids.length;i++){
   const first=i===0;
-  const headerRect=first?[m,H-38,245,H-21]:[m+175,H-23,m+355,H-10];
+  const headerRect=[m,H-37,235,H-20];
   const footerRect=[m+169,H-820,m+380,H-803];
   for(const [j,r] of [headerRect,footerRect].entries()){
    objs[aids[i][j]]="<< /Type /Annot /Subtype /Link /Rect ["+r.join(" ")+"] /Border [0 0 0] /A << /S /URI /URI (https://msmeknowledgehub.com/) >> >>";
