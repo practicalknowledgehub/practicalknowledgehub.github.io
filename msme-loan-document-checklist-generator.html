@@ -20,7 +20,7 @@
 .field-loans .radio-set legend{grid-column:1/-1}
 .field-loans .radio-set label{margin:0;min-width:0}
 .field-loans .radio-set label:last-child{grid-column:1/-1}
-.field-subtype:has(> .hidden:only-child){display:none}
+.field-subtype:not(:has(> fieldset:not(.hidden))){display:none}
 @media(min-width:800px){.fields{grid-template-columns:repeat(2,minmax(0,1fr));gap:19px 28px}.field-loans,.field-subtype{grid-column:1/-1}.field-loans .radio-set{grid-template-columns:repeat(4,minmax(0,1fr))}.field-loans .radio-set label:last-child{grid-column:1/3}}
 @media(max-width:799px){.msme-global-header .wrap{display:flex;flex-wrap:wrap;gap:8px}.msme-global-header .site-nav{width:100%;justify-content:flex-start}}
 @media print{header,.no-print,footer{display:none!important}body{background:#fff}main{padding:0}section{border:0;margin:0;padding:0}}
