@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Temporary Customer Tracker</title>
+<style>body{font-family:system-ui,sans-serif;background:#f5f7fa;color:#192534;margin:0}main{max-width:540px;margin:8vh auto;padding:24px}section{background:white;border:1px solid #dce3ea;border-radius:16px;padding:24px;box-shadow:0 5px 20px #19253410}h1{font-size:1.5rem}p{line-height:1.6}.note{font-size:.9rem;color:#526071}a.button{display:inline-block;background:#1262a3;color:white;text-decoration:none;padding:13px 18px;border-radius:10px;font-weight:600}#link{display:none}</style></head>
+<body><main><section><h1>Customer Completion Tracker</h1><p>Temporary team-only customer checklist.</p><p class="note">Customer names, locations and completion records are not stored on this public website. Authorized staff must sign in to the approved private tracker.</p><p id="status">The secure tracker has not yet been connected. Please contact the tracker administrator.</p><a class="button" id="link" rel="noopener noreferrer" href="#">Open secure tracker</a></section></main>
+<script>
+// Administrator: after deploying an authenticated, access-restricted tracker,
+// replace the empty string with its HTTPS URL. Never put customer data,
+// credentials, access tokens, or private API keys in this public file.
+const AUTHENTICATED_TRACKER_URL = "";
+if(/^https:\/\//.test(AUTHENTICATED_TRACKER_URL)){
+  const link=document.getElementById('link');
+  link.href=AUTHENTICATED_TRACKER_URL;
+  link.style.display='inline-block';
+  document.getElementById('status').textContent='Sign in with your authorized account to continue.';
+}
+</script></body></html>
