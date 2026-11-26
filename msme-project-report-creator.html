@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MSME Project Report Creator (Beta) | MSME Knowledge Hub</title>
+<meta name="description" content="Create a draft MSME business project report with project cost, funding, five-year profit estimates and illustrative DSCR. Free browser-based testing tool.">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://msmeknowledgehub.com/msme-project-report-creator.html">
+<meta name="google-adsense-account" content="ca-pub-1787256927900357">
+<link rel="stylesheet" href="/msme-navigation.css">
+<style id="report-css">
+:root{--ink:#1d334b;--blue:#103c72;--accent:#1468a3;--bg:#f4f8fc;--line:#d7e3ee;--muted:#526a7e}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--bg);font:16px/1.55 system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+.container{max-width:1080px;margin:auto;padding:0 18px}.msme-global-header .wrap{max-width:1120px;margin:auto;padding:12px 16px;display:flex;align-items:center;gap:15px;flex-wrap:wrap}.brand{font-weight:800;font-size:1.12rem;color:var(--blue);text-decoration:none}
+a{color:#12669f}.hero{background:linear-gradient(115deg,#103c72,#17699f);color:#fff;padding:42px 0}.hero h1{font-size:clamp(1.85rem,4vw,2.7rem);margin:8px 0}.hero p{max-width:760px;color:#e0f0ff;margin:8px 0}.eyebrow{text-transform:uppercase;font-weight:800;letter-spacing:.09em;font-size:.79rem;color:#d1ebff}
+.pill{display:inline-block;background:#f4e5bd;color:#5c430a;font-size:.76rem;font-weight:750;padding:4px 10px;border-radius:999px;margin-left:8px}
+main{padding-top:22px;padding-bottom:35px}.intro{background:#eaf3fb;border:1px solid #c7ddec;border-radius:12px;padding:14px 18px;color:#264b6b}
+.panel{background:white;border:1px solid var(--line);border-radius:14px;padding:clamp(17px,3vw,27px);margin:20px 0;box-shadow:0 3px 16px #123b6009;min-width:0}
+.panel h2{color:var(--blue);font-size:1.35rem;margin:0 0 8px}.panel p.lead{margin:0 0 16px;color:var(--muted)}h3{color:var(--blue)}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 20px}.wide{grid-column:1/-1}.field{min-width:0}
+label{display:block;font-size:.93rem;font-weight:650;margin:0 0 5px}.hint{font-size:.82rem;color:var(--muted);font-weight:400}
+input,select,textarea{display:block;width:100%;min-width:0;font:inherit;padding:10px 11px;border:1px solid #9eb3c6;border-radius:8px;background:#fff;color:#19354c}
+textarea{min-height:80px;resize:vertical}input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible{outline:3px solid #eba62b;outline-offset:2px}
+fieldset{border:0;padding:0;margin:0;min-width:0}legend{font-weight:650;margin-bottom:8px}.choices{display:flex;flex-wrap:wrap;gap:9px 18px}.choices label{display:inline-flex;align-items:center;gap:7px;margin:0;font-weight:500}.choices input{width:18px;height:18px;accent-color:#1366a5}
+.calc-note{font-size:.83rem;color:var(--muted);margin:6px 0 0}.summary-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:16px 0}.mini{background:#f4f8fc;border:1px solid #deebf4;border-radius:10px;padding:12px;min-width:0}.mini .label{display:block;color:#4c667d;font-size:.78rem;font-weight:700}.mini strong{font-size:1.13rem;color:var(--blue);overflow-wrap:anywhere}
+.warning{background:#fff8e7;border-left:4px solid #e1ad32;padding:10px 13px;margin:14px 0;font-size:.89rem}.error{font-weight:650;color:#a61f24;margin:9px 0}.success{color:#1d6a45;font-weight:700}.actions{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+button{border:0;border-radius:8px;background:#14649d;color:white;padding:11px 16px;font:inherit;font-weight:750;cursor:pointer}
+button.alt{background:#e7eff7;color:#103c72}button:disabled{opacity:.5;cursor:not-allowed}
+.linkbar{display:flex;gap:12px;flex-wrap:wrap;font-size:.91rem;color:#4e6375}.guide{max-width:960px}.guide p,.guide li{line-height:1.7}
+table{border-collapse:collapse;width:100%;font-size:.87rem}th,td{border:1px solid #cbdae5;text-align:left;padding:7px 8px;vertical-align:top}th{background:#eaf2f9;color:#203e59}td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.table-scroll{overflow-x:auto;max-width:100%}.report{background:#fff;border:1px solid #cbdce8;border-radius:12px;padding:25px;margin:20px 0;box-shadow:0 5px 22px #14345013;max-width:100%;overflow-wrap:anywhere}
+.report[hidden]{display:none!important}.report-header{display:flex;justify-content:space-between;gap:16px;border-bottom:3px solid #103c72;padding-bottom:12px;margin-bottom:16px;align-items:center}
+.report-header .brandname{font-size:1.07rem;font-weight:850;color:#103c72}.report .muted{font-size:.83rem;color:#566b7b}.report h2{font-size:1.22rem;color:#103c72;margin:23px 0 10px}.report h1{font-size:1.65rem;color:#103c72;line-height:1.2;margin:10px 0}.report h3{margin:16px 0 7px;font-size:1.03rem}.report p{margin:8px 0;line-height:1.6}.report .report-note{border-left:3px solid #93b7d0;padding:7px 12px;background:#f3f8fc}
+.report .figure{font-size:.86rem;text-align:right;color:#536b7d;margin:7px 0}
+footer{padding:28px 18px;background:#103456;color:white;text-align:center;font-size:.91rem}footer a{color:white}
+@media(max-width:740px){.fields{grid-template-columns:1fr}.summary-grid{grid-template-columns:1fr}.report{padding:16px}.report-header{align-items:flex-start;flex-direction:column}.hero{padding:30px 0}.actions button{flex:1 1 100%}.msme-global-header .site-nav{width:100%;justify-content:flex-start}}
+@media(max-width:370px){.container{padding:0 12px}.panel{padding:14px}}
+@page{size:A4;margin:12mm}
+@media print{body{background:white!important;font-size:10pt}.msme-global-header,.hero,.intro,.builder,.report-actions,.guide,footer,.page-note{display:none!important}
+main{padding:0!important;max-width:none!important}.report{display:block!important;border:0!important;box-shadow:none!important;padding:0!important;margin:0!important;border-radius:0}
+.report-header{flex-direction:row}.report h1{font-size:17pt}.report h2{font-size:12pt;break-after:avoid}
+.report h3{break-after:avoid}.report table{font-size:8.5pt}.report tr{break-inside:avoid}.report thead{display:table-header-group}
+.report section{break-inside:auto}.report .table-scroll{overflow:visible!important}.report .page-break{break-before:page}}
+</style></head>
+<body><header class="msme-global-header"><div class="wrap"><a href="/" class="brand">MSME Knowledge Hub</a><nav aria-label="Main navigation" class="site-nav"><a class="site-nav-link" data-hi="होम" href="/">Home</a><details class="site-menu"><summary data-hi="ऑनलाइन ऋण आवेदन">Apply Loan Online</summary><div class="site-dropdown"><a data-hi="एमएसएमई ऋण आवेदन" href="/msme-loan-apply-online.html">MSME Loan Application</a><a data-hi="पात्रता और दस्तावेज" href="/msme-loan-eligibility-documents.html">Loan Eligibility &amp; Documents</a><a data-hi="कार्यशील पूंजी पात्रता" href="/working-capital-loan-eligibility.html">Working Capital Eligibility</a><a data-hi="सीजीटीएमएसई गाइड" href="/cgtmse-loan-scheme-guide.html">CGTMSE Guide</a><a data-hi="पीएमईजीपी योजना" href="/pmegp-loan-scheme-2026.html">PMEGP Loan Scheme</a><a data-hi="संपत्ति पर ऋण" href="/loan-against-property-for-business.html">Loan Against Property</a><a data-hi="मशीनरी ऋण गाइड" href="/msme-machinery-loan-guide.html">Machinery Loan Guide</a><a data-hi="वाणिज्यिक संपत्ति ऋण पात्रता" href="/commercial-property-loan-eligibility.html">Commercial Property Loan Eligibility</a></div></details><details class="site-menu"><summary data-hi="लेख">Articles</summary><div class="site-dropdown"><a data-hi="सभी लेख" href="/articles.html">All Articles</a><a data-hi="वाणिज्यिक संपत्ति खरीद ऋण" href="/commercial-property-purchase-loan-msme-india.html">Commercial Property Purchase Loans</a><a data-hi="एमएसएमई ऋण ब्याज दरें" href="/msme-loan-interest-rates-how-to-get-better-rate.html">MSME Loan Interest Rates</a><a data-hi="ईएमआई, PED और लचीला पुनर्भुगतान" href="/msme-loan-repayment-schedule-emi-ped-flexible.html">EMI vs PED vs Flexible Repayment</a><a data-hi="13-सप्ताह नकदी प्रवाह गाइड" href="/13-week-cash-flow-forecast-msme.html">13-Week Cash Flow Forecast Guide</a><a data-hi="कार्यशील पूंजी अंतर गाइड" href="/working-capital-gap-msme-guide.html">Working Capital Gap Guide</a><a data-hi="ऋण चुकौती क्षमता गाइड" href="/loan-repayment-capacity-msme-guide.html">Loan Repayment Capacity Guide</a><a data-hi="नकदी रूपांतरण चक्र गाइड" href="/cash-conversion-cycle-msme-guide.html">Cash Conversion Cycle Guide</a><a data-hi="ब्रेक-ईवन विश्लेषण गाइड" href="/break-even-analysis-msme-guide.html">Break-Even Analysis Guide</a></div></details><details class="site-menu"><summary data-hi="कैलकुलेटर">Calculators</summary><div class="site-dropdown"><a data-hi="सभी कैलकुलेटर" href="/calculators.html">All Calculators</a><a data-hi="ऋण ईएमआई" href="/msme-business-loan-emi-calculator.html">Loan EMI</a><a data-hi="समान मूलधन (PED)" href="/ped-calculator.html">Principal Equally Distributed (PED)</a><a data-hi="निर्धारित पुनर्भुगतान" href="/negotiated-repayment-calculator.html">Negotiated Repayment</a><a data-hi="व्यवसाय ऋण पात्रता" href="/business-loan-eligibility-calculator.html">Business Loan Eligibility</a><a data-hi="कार्यशील पूंजी" href="/msme-working-capital-calculator.html">Working Capital</a><a data-hi="ऋण सेवा कवरेज" href="/msme-dscr-calculator.html">DSCR</a><a data-hi="आहरण शक्ति" href="/msme-drawing-power-calculator.html">Drawing Power</a><a data-hi="कैश क्रेडिट ब्याज" href="/cash-credit-interest-calculator.html">Cash Credit Interest</a><a data-hi="नकदी रूपांतरण चक्र" href="/cash-conversion-cycle-calculator.html">Cash Conversion Cycle</a><a data-hi="ब्रेक-ईवन बिक्री" href="/break-even-sales-calculator.html">Break-Even Sales</a><a data-hi="13-सप्ताह नकदी प्रवाह" href="/13-week-cash-flow-calculator.html">13-Week Cash Flow Forecast</a><a data-hi="कार्यशील पूंजी अंतर" href="/working-capital-gap-calculator.html">Working Capital Gap</a><a data-hi="ऋण चुकौती क्षमता" href="/loan-repayment-capacity-calculator.html">Loan Repayment Capacity</a></div></details><details class="site-menu"><summary data-hi="टूल्स">Tools</summary><div class="site-dropdown"><a href="/tools.html">All Tools</a><a href="/msme-loan-document-checklist-generator.html">Loan Document Checklist Generator</a><a href="/msme-project-report-creator.html">Project Report Creator (Beta)</a></div></details><a class="site-nav-link" data-hi="हमारी पुस्तक" href="/msme-guide.html">Our Book</a><a class="site-nav-link" data-hi="हमारे बारे में" href="/about.html">About</a><a class="site-nav-link" data-hi="संपर्क" href="/contact.html">Contact</a><select aria-label="Website language" class="lang-select" id="site-language"><option value="en">English</option><option value="hi">हिन्दी</option></select></nav></div></header>
+<div class="hero"><div class="container"><span class="eyebrow">MSME Knowledge Hub · Business planning</span><span class="pill">Beta · Testing version</span>
+<h1>MSME Project Report Creator</h1>
+<p>Prepare a borrower-side business project report with cost of project, means of finance, five-year financial estimates and an illustrative repayment assessment.</p>
+</div></div>
+<main class="container">
+<p class="intro">This first version is designed for testing. All information entered is processed in your browser; the form is not submitted to our server. Do not enter confidential customer information. This report is an estimate, not a bank-approved project appraisal.</p>
+<div class="builder">
+<div class="actions"><button type="button" id="loadSample" class="alt">Load fictional sample</button><button type="button" id="clearForm" class="alt">Clear form</button></div>
+<form id="projectForm" novalidate>
+<section class="panel"><h2>1. Business and project particulars</h2><p class="lead">Describe the applicant, proposed activity and purpose of borrowing.</p>
+<div class="fields">
+<div class="field"><label for="businessName">Business / project name *</label><input id="businessName" maxlength="120" placeholder="ABC Engineering Works" required></div>
+<div class="field"><label for="promoter">Promoter / partners / directors</label><input id="promoter" maxlength="180" placeholder="Names or an authorised description"></div>
+<div class="field"><label for="location">Business location *</label><input id="location" maxlength="150" placeholder="City, district and state" required></div>
+<div class="field"><label for="constitution">Business constitution</label><select id="constitution"><option>Proprietorship</option><option>Partnership Firm</option><option>LLP</option><option>Private Limited Company</option><option>Other</option></select></div>
+<div class="field"><fieldset><legend>Business status</legend><div class="choices"><label><input type="radio" name="stage" value="New" checked>New</label><label><input type="radio" name="stage" value="Existing">Existing</label></div></fieldset></div>
+<div class="field"><label for="activity">Business sector</label><select id="activity"><option>Manufacturing</option><option>Trading</option><option>Services</option><option>Other</option></select></div>
+<div class="field"><label for="employment">Proposed direct employment (persons)</label><input id="employment" type="number" min="0" step="1" value="0"></div>
+<div class="field"><label for="purpose">Purpose of finance</label><select id="purpose"><option>New unit / project establishment</option><option>Expansion / capacity enhancement</option><option>Machinery / equipment purchase</option><option>Business premises / fit-out</option><option>Other business investment</option></select></div>
+<div class="field wide"><label for="projectDescription">Project summary and products / services *</label><textarea id="projectDescription" maxlength="2000" required placeholder="What does the business sell or produce? What is the proposed investment?"></textarea></div>
+<div class="field wide"><label for="promoterExperience">Promoter background and experience</label><textarea id="promoterExperience" maxlength="1200" placeholder="Relevant training, management experience, current business activity"></textarea></div>
+<div class="field wide"><label for="market">Market, customers and competition</label><textarea id="market" maxlength="1600" placeholder="Expected demand, customer segments, local competition; avoid unsupported market-size claims"></textarea></div>
+<div class="field wide"><label for="operations">Operations and implementation plan</label><textarea id="operations" maxlength="1600" placeholder="Premises, machinery, suppliers, project timeline, licences"></textarea></div>
+<div class="field wide"><label for="risk">Key risks and proposed mitigations</label><textarea id="risk" maxlength="1200" placeholder="For example: debtor collections, raw-material availability, cash-flow variation"></textarea></div>
+</div></section>
+<section class="panel"><h2>2. Project cost and means of finance</h2><p class="lead">Enter amounts in <strong>₹ lakh</strong>. Working capital cash-credit limit is separate from project-cost funding; do not add it to the means-of-finance total.</p>
+<div class="fields">
+<div class="field"><label for="building">Land / building / civil works (₹ lakh)</label><input id="building" type="number" min="0" step="0.01" value="0"></div>
+<div class="field"><label for="machinery">Plant / machinery / equipment (₹ lakh)</label><input id="machinery" type="number" min="0" step="0.01" value="0"></div>
+<div class="field"><label for="furnishings">Furniture / fit-out / other assets (₹ lakh)</label><input id="furnishings" type="number" min="0" step="0.01" value="0"></div>
+<div class="field"><label for="preliminary">Preliminary and pre-operative costs (₹ lakh)</label><input id="preliminary" type="number" min="0" step="0.01" value="0"></div>
+<div class="field"><label for="wcMargin">Working capital margin / initial funds (₹ lakh)</label><input id="wcMargin" type="number" min="0" step="0.01" value="0"></div>
+<div class="field"><label for="promoterCapital">Promoter contribution (₹ lakh)</label><input id="promoterCapital" type="number" min="0" step="0.01" value="0"></div>
+<div class="field"><label for="termLoan">Proposed bank term loan (₹ lakh)</label><input id="termLoan" type="number" min="0" step="0.01" value="0"></div>
+<div class="field"><label for="unsecured">Other funds / unsecured contribution (₹ lakh)</label><input id="unsecured" type="number" min="0" step="0.01" value="0"></div>
+<div class="field"><label for="subsidy">Confirmed subsidy / grant, if any (₹ lakh)</label><input id="subsidy" type="number" min="0" step="0.01" value="0"><p class="calc-note">Enter only where specifically confirmed; do not assume eligibility.</p></div>
+</div>
+<div class="summary-grid" aria-live="polite">
+<div class="mini"><span class="label">Total project cost</span><strong id="costLive">₹0.00 lakh</strong></div>
+<div class="mini"><span class="label">Total funding proposed</span><strong id="fundingLive">₹0.00 lakh</strong></div>
+<div class="mini"><span class="label">Difference (funding − cost)</span><strong id="differenceLive">₹0.00 lakh</strong></div>
+</div><p class="calc-note">The report requires the funding sources to match the project cost. Working capital margin is a project use; any cash-credit limit is reported separately.</p>
+</section>
+<section class="panel"><h2>3. Revenue, expenses and loan assumptions</h2><p class="lead">Use realistic estimates. These inputs produce five illustrative annual projections, not audited financial statements.</p>
+<div class="fields">
+<div class="field"><label for="sales1">Year 1 sales / turnover (₹ lakh) *</label><input id="sales1" type="number" min="0.01" step="0.01" value="0"></div>
+<div class="field"><label for="salesGrowth">Annual sales growth (%)</label><input id="salesGrowth" type="number" min="-50" max="100" step="0.1" value="8"></div>
+<div class="field"><label for="directPct">Direct costs / purchases (% of sales)</label><input id="directPct" type="number" min="0" max="100" step="0.1" value="60"></div>
+<div class="field"><label for="salary1">Year 1 salaries and wages (₹ lakh)</label><input id="salary1" type="number" min="0" step="0.01" value="0"></div>
+<div class="field"><label for="admin1">Year 1 rent and administration (₹ lakh)</label><input id="admin1" type="number" min="0" step="0.01" value="0"></div>
+<div class="field"><label for="other1">Year 1 other overheads (₹ lakh)</label><input id="other1" type="number" min="0" step="0.01" value="0"></div>
+<div class="field"><label for="costGrowth">Annual growth in operating overheads (%)</label><input id="costGrowth" type="number" min="0" max="100" step="0.1" value="5"></div>
+<div class="field"><label for="depreciation">Estimated annual depreciation (₹ lakh)</label><input id="depreciation" type="number" min="0" step="0.01" value="0"><p class="calc-note">Manual estimate for this version; not a statutory depreciation calculation.</p></div>
+<div class="field"><label for="taxPct">Illustrative tax provision on positive profit (%)</label><input id="taxPct" type="number" min="0" max="50" step="0.1" value="25"><p class="calc-note">Simplified assumption, not an income-tax calculation.</p></div>
+<div class="field"><label for="tlRate">Term loan interest rate (% per annum)</label><input id="tlRate" type="number" min="0" max="60" step="0.1" value="11"></div>
+<div class="field"><label for="tlYears">Term loan repayment tenure (years)</label><input id="tlYears" type="number" min="1" max="15" step="1" value="5"><p class="calc-note">Assumes equal monthly instalments, no moratorium and constant interest.</p></div>
+<div class="field"><label for="ccLimit">Proposed cash credit / OD limit (₹ lakh)</label><input id="ccLimit" type="number" min="0" step="0.01" value="0"><p class="calc-note">Separate short-term facility, not a source of project cost funding.</p></div>
+<div class="field"><label for="ccUse">Average utilisation of CC / OD limit (%)</label><input id="ccUse" type="number" min="0" max="100" step="0.1" value="70"></div>
+<div class="field"><label for="ccRate">CC / OD interest rate (% per annum)</label><input id="ccRate" type="number" min="0" max="60" step="0.1" value="12"></div>
+</div><div class="warning"><strong>Projection limits:</strong> This testing version assumes constant direct-cost percentage, automatic annual sales/overhead growth and estimated tax/depreciation. It excludes GST cash flows, loan moratoria, unsecured-loan servicing, detailed working-capital assessment and balance-sheet projections. Review the output with a finance professional before bank submission.</div>
+</section>
+<div class="actions"><button type="button" id="generate">Generate report preview</button><button type="button" id="printBtn" disabled class="alt">Print / Save as PDF</button><button type="button" id="downloadBtn" disabled class="alt">Download report (HTML)</button></div>
+<p id="status" role="status" aria-live="polite"></p>
+</form></div>
+<div class="report-actions page-note" id="reportActions" hidden><p class="success">Report generated. Review every figure and statement before using it.</p></div>
+<article id="report" class="report" hidden aria-label="Generated MSME project report"></article>
+<section class="panel guide"><h2>How to use this first version</h2>
+<ol><li>Enter genuine business details or select <strong>Load fictional sample</strong> to understand the workflow.</li>
+<li>Fill the project cost and funding sources in ₹ lakh, ensuring they balance.</li>
+<li>Enter sales, direct costs, operating expenses, borrowing terms and cash-credit assumptions.</li>
+<li>Choose <strong>Generate report preview</strong> and review the five-year projections and DSCR calculations.</li>
+<li>Use <strong>Print / Save as PDF</strong> to produce an A4 document, or download a standalone HTML report.</li></ol>
+<h3>What is included?</h3><p>The report includes an applicant profile, narrative sections, project cost, means of finance, assumed borrowing structure, annual profit projections, a term-loan repayment summary, an illustrative DSCR and a simple Year 1 break-even estimate. Figures are estimates based only on the entered information.</p>
+<h3>What should be added before a bank application?</h3><p>Bank loan project reports normally need evidence supporting estimates: quotations, site and ownership papers, expected capacity utilisation, market assumptions, promoter contribution, implementation schedule, licences, working capital assessment and other documents suitable for the chosen loan. Use our <a href="/msme-loan-document-checklist-generator.html">Loan Document Checklist Generator</a> as a companion tool.</p>
+<p>This pilot does not determine eligibility, sanction terms or eligibility for subsidies and guarantees. Relevant details vary with the lending bank, borrower, business activity and product. You may also review our <a href="/msme-project-report-for-bank-loan.html">guide to preparing MSME project reports</a> and <a href="/msme-dscr-calculation.html">DSCR explanation</a>.</p>
+</section>
+</main>
+<footer>© MSME Knowledge Hub · <a href="/">Home</a> · <a href="/tools.html">Tools</a> · <a href="/privacy-policy.html">Privacy Policy</a> · Educational planning tool, not a bank appraisal</footer>
+<script defer src="/msme-navigation.js"></script>
+<script>
+
+"use strict";
+(function(){
+const $=id=>document.getElementById(id);
+const ids=["businessName","promoter","location","constitution","activity","employment","purpose","projectDescription","promoterExperience","market","operations","risk","building","machinery","furnishings","preliminary","wcMargin","promoterCapital","termLoan","unsecured","subsidy","sales1","salesGrowth","directPct","salary1","admin1","other1","costGrowth","depreciation","taxPct","tlRate","tlYears","ccLimit","ccUse","ccRate"];
+const financial=["building","machinery","furnishings","preliminary","wcMargin","promoterCapital","termLoan","unsecured","subsidy","sales1","salesGrowth","directPct","salary1","admin1","other1","costGrowth","depreciation","taxPct","tlRate","tlYears","ccLimit","ccUse","ccRate","employment"];
+const money=n=>"₹"+Number(n).toLocaleString("en-IN",{minimumFractionDigits:2,maximumFractionDigits:2})+" lakh";
+const num=n=>Number(n).toLocaleString("en-IN",{minimumFractionDigits:2,maximumFractionDigits:2});
+const safe=s=>String(s==null?"":s).replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+const para=s=>safe(s&&s.trim()?s.trim():"Not provided; the applicant should supply verified supporting details.").replace(/\n/g,"<br>");
+const val=id=>($(id).value||"").trim();
+const n=id=>Number(val(id)||0);
+const stage=()=>document.querySelector('input[name="stage"]:checked').value;
+const cols=a=>"<tr>"+a.map((x,i)=>"<td"+(i?" class=\"num\"":"")+">"+x+"</td>").join("")+"</tr>";
+const rowsTable=(head,rows)=>"<div class=\"table-scroll\"><table><thead><tr>"+head.map((s,i)=>"<th"+(i?" class=\"num\"":"")+">"+safe(s)+"</th>").join("")+"</tr></thead><tbody>"+rows.join("")+"</tbody></table></div>";
+let validReport=false;
+function invalidate(){validReport=false;$("printBtn").disabled=true;$("downloadBtn").disabled=true;$("report").hidden=true;$("reportActions").hidden=true;$("status").textContent="Inputs changed. Generate the report again to update calculations.";}
+function read(){
+const o={stage:stage()};
+ids.forEach(id=>{o[id]=financial.includes(id)?n(id):val(id)});
+return o;
+}
+function finances(o){
+const uses=o.building+o.machinery+o.furnishings+o.preliminary+o.wcMargin;
+const sources=o.promoterCapital+o.termLoan+o.unsecured+o.subsidy;
+return {uses,sources,difference:sources-uses};
+}
+function live(){
+const f=finances(read());
+$("costLive").textContent=money(f.uses);
+$("fundingLive").textContent=money(f.sources);
+$("differenceLive").textContent=(f.difference>0?"+":"")+money(f.difference);
+$("differenceLive").style.color=Math.abs(f.difference)>.01?"#a44228":"#1b6b44";
+}
+function amortisation(loan,rate,years){
+const months=Math.max(1,Math.round(years*12)),r=rate/1200;
+const emi=r===0?loan/months:(loan*r)/(1-Math.pow(1+r,-months));
+const list=[];let remain=loan;
+for(let y=0;y<5;y++){
+let principal=0,interest=0,opening=remain;
+for(let m=0;m<12&&remain>0.0000001;m++){
+const i=remain*r,p=Math.min(remain,Math.max(0,emi-i));
+interest+=i;principal+=p;remain=Math.max(0,remain-p);
+}
+list.push({opening,principal,interest,closing:remain,service:principal+interest});
+}
+return {emi,list};
+}
+function model(o){
+const a=amortisation(o.termLoan,o.tlRate,o.tlYears);
+const projection=[];
+for(let i=0;i<5;i++){
+const revenue=o.sales1*Math.pow(1+o.salesGrowth/100,i);
+const direct=revenue*o.directPct/100;
+const salary=o.salary1*Math.pow(1+o.costGrowth/100,i);
+const admin=o.admin1*Math.pow(1+o.costGrowth/100,i);
+const others=o.other1*Math.pow(1+o.costGrowth/100,i);
+const ebitda=revenue-direct-salary-admin-others;
+const ccInterest=o.ccLimit*o.ccUse/100*o.ccRate/100;
+const tlInterest=a.list[i].interest;
+const beforeTax=ebitda-o.depreciation-tlInterest-ccInterest;
+const tax=Math.max(0,beforeTax)*o.taxPct/100;
+const pat=beforeTax-tax;
+const available=pat+o.depreciation+tlInterest;
+const debtService=a.list[i].service;
+const dscr=debtService>0.000001?available/debtService:null;
+projection.push({year:i+1,revenue,direct,salary,admin,others,ebitda,dep:o.depreciation,tlInterest,ccInterest,beforeTax,tax,pat,available,debtService,dscr,loan:a.list[i]});
+}
+const margin=1-o.directPct/100;
+const fixed=projection[0].salary+projection[0].admin+projection[0].others+o.depreciation+projection[0].tlInterest+projection[0].ccInterest;
+const breakEven=margin>0?fixed/margin:null;
+const dscrRows=projection.filter(p=>p.dscr!==null);
+const aggregate=dscrRows.reduce((acc,p)=>{acc.a+=p.available;acc.b+=p.debtService;return acc},{a:0,b:0});
+return {amort:a,projection,breakEven,aggregateDscr:aggregate.b>0?aggregate.a/aggregate.b:null};
+}
+function validate(o){
+const problems=[];
+if(!o.businessName||!o.location||!o.projectDescription)problems.push("Enter the business name, location and project summary.");
+if(!Number.isInteger(o.employment)||o.employment<0)problems.push("Enter a valid whole number for direct employment.");
+financial.forEach(id=>{if(!Number.isFinite(o[id]))problems.push("Enter a valid number for "+id+".")});
+const nonNegative=["building","machinery","furnishings","preliminary","wcMargin","promoterCapital","termLoan","unsecured","subsidy","salary1","admin1","other1","depreciation","ccLimit"];
+nonNegative.forEach(k=>{if(o[k]<0)problems.push(k+" cannot be negative.")});
+const pct=["directPct","taxPct","tlRate","ccUse","ccRate"];
+pct.forEach(k=>{if(o[k]<0||o[k]>(k==="taxPct"?50:k==="ccUse"||k==="directPct"?100:60))problems.push("Check the percentage for "+k+".")});
+if(o.salesGrowth< -50||o.salesGrowth>100||o.costGrowth<0||o.costGrowth>100)problems.push("Check sales growth and overhead growth percentages.");
+if(!Number.isInteger(o.tlYears)||o.tlYears<1||o.tlYears>15)problems.push("Term loan repayment tenure should be 1–15 whole years.");
+if(o.sales1<=0)problems.push("Enter positive Year 1 sales.");
+const f=finances(o);if(f.uses<=0)problems.push("Enter a positive project cost.");
+if(Math.abs(f.difference)>.01)problems.push("Funding must equal project cost. Current difference: "+money(f.difference)+".");
+return problems;
+}
+function generate(){
+const o=read(),errors=validate(o);
+if(errors.length){$("status").className="error";$("status").textContent=errors.join(" ");return;}
+const f=finances(o),m=model(o),p=m.projection;
+const today=new Intl.DateTimeFormat("en-IN",{timeZone:"Asia/Kolkata",dateStyle:"medium",timeStyle:"short"}).format(new Date())+" IST";
+const financeRows=[
+["Land / building / civil works",o.building],["Plant / machinery / equipment",o.machinery],["Furniture / fit-out / other assets",o.furnishings],["Preliminary and pre-operative costs",o.preliminary],["Working capital margin / initial funds",o.wcMargin],
+["Total project cost",f.uses]];
+const sourcesRows=[["Promoter contribution",o.promoterCapital],["Proposed bank term loan",o.termLoan],["Other funds / unsecured contribution",o.unsecured],["Confirmed subsidy / grant",o.subsidy],["Total means of finance",f.sources]];
+const costTable=rowsTable(["Project cost (₹ lakh)","Amount"],financeRows.map(r=>cols([safe(r[0]),num(r[1])])));
+const sourceTable=rowsTable(["Means of finance (₹ lakh)","Amount"],sourcesRows.map(r=>cols([safe(r[0]),num(r[1])])));
+const metricRows=[
+["Sales / turnover",x=>x.revenue],["Direct cost / purchases",x=>x.direct],["Salaries and wages",x=>x.salary],["Rent and administration",x=>x.admin],["Other overheads",x=>x.others],
+["EBITDA",x=>x.ebitda],["Depreciation (assumed)",x=>x.dep],["Term loan interest",x=>x.tlInterest],["Cash credit / OD interest",x=>x.ccInterest],
+["Profit before estimated tax",x=>x.beforeTax],["Illustrative tax provision",x=>x.tax],["Profit after estimated tax",x=>x.pat],
+["Cash available for term debt service",x=>x.available],["Term loan principal + interest",x=>x.debtService]];
+const projections=rowsTable(["Particulars (₹ lakh)","Year 1","Year 2","Year 3","Year 4","Year 5"],metricRows.map(r=>cols([safe(r[0])].concat(p.map(q=>num(r[1](q))))))+
+cols(["DSCR"].concat(p.map(q=>q.dscr===null?"N/A":num(q.dscr)+"x"))));
+const termSchedule=rowsTable(["Term loan (₹ lakh)","Y1","Y2","Y3","Y4","Y5"],[
+["Opening outstanding",x=>x.opening],["Principal repaid",x=>x.principal],["Interest",x=>x.interest],["Closing outstanding",x=>x.closing]].map(r=>cols([safe(r[0])].concat(p.map(q=>num(r[1](q.loan)))))));
+const profile=rowsTable(["Business particulars","Details"],[
+["Business / project",safe(o.businessName)],["Promoter(s)",safe(o.promoter||"Not provided")],["Location",safe(o.location)],["Constitution",safe(o.constitution)],["Status",safe(o.stage)],["Sector",safe(o.activity)],["Purpose",safe(o.purpose)],["Direct employment",String(o.employment)]].map(r=>"<tr><td>"+r[0]+"</td><td>"+r[1]+"</td></tr>"));
+const assumptionRows=[["Year 1 turnover",money(o.sales1)],["Annual sales growth",num(o.salesGrowth)+"%"],["Direct costs as % of sales",num(o.directPct)+"%"],["Annual operating overhead growth",num(o.costGrowth)+"%"],["Annual depreciation (manual)",money(o.depreciation)],["Tax provision on positive profit",num(o.taxPct)+"%"],["Term loan interest",num(o.tlRate)+"% p.a."],["Term loan tenure",o.tlYears+" years"],["Assumed monthly EMI",money(m.amort.emi)],["Cash credit / OD limit",money(o.ccLimit)],["Assumed CC/OD average utilisation",num(o.ccUse)+"%"],["CC/OD interest",num(o.ccRate)+"% p.a."]];
+const assumptionTable=rowsTable(["Projection assumption","Value"],assumptionRows.map(r=>"<tr><td>"+safe(r[0])+"</td><td>"+safe(r[1])+"</td></tr>"));
+const debtServiceSummary=o.termLoan>0?(m.aggregateDscr===null?"N/A":num(m.aggregateDscr)+"x over the projected repayment years"):"Not applicable: no term loan proposed.";
+const breakEven=m.breakEven===null?"Not meaningful because direct costs are 100% or more of sales.":money(m.breakEven);
+const caveats=[];
+if(o.promoterCapital<o.wcMargin-0.01)caveats.push("The entered promoter contribution is below the working capital margin; confirm the proposed source of the margin with the lender.");
+if(p[0].ebitda<0)caveats.push("The Year 1 operating estimate shows negative EBITDA. Reassess revenue and operating cost assumptions.");
+if(p.some(x=>x.dscr!==null&&x.dscr<1))caveats.push("One or more projected DSCRs are below 1.00; indicated cash available is less than scheduled term-debt service in those years.");
+const report='<div class="report-header"><div><div class="brandname">MSME KNOWLEDGE HUB</div><div class="muted">www.msmeknowledgehub.com</div></div><div><strong>PROJECT REPORT</strong><div class="muted">Borrower draft · Beta testing</div></div></div>'+
+'<h1>Illustrative MSME Business Project Report</h1><p><strong>Business:</strong> '+safe(o.businessName)+' &nbsp; | &nbsp; <strong>Location:</strong> '+safe(o.location)+'</p><p class="muted">Generated: '+safe(today)+' · Amounts in ₹ lakh unless otherwise stated</p>'+
+'<section><h2>1. Project overview</h2><p>'+para(o.projectDescription)+'</p>'+profile+'</section>'+
+'<section><h2>2. Promoter and business experience</h2><p>'+para(o.promoterExperience)+'</p></section>'+
+'<section><h2>3. Market, customers and competition</h2><p>'+para(o.market)+'</p></section>'+
+'<section><h2>4. Operations and implementation plan</h2><p>'+para(o.operations)+'</p></section>'+
+'<section><h2>5. Project cost</h2>'+costTable+'<p class="report-note">Project cost includes the proposed working capital margin. Cash credit / OD is a separate revolving facility and is not added to total project funding.</p></section>'+
+'<section><h2>6. Means of finance</h2>'+sourceTable+'<p>Funding difference: <strong>'+money(f.difference)+'</strong>. Proposed sources match total project cost based on the inputs.</p></section>'+
+'<section><h2>7. Borrowing and projection assumptions</h2>'+assumptionTable+'<p class="report-note">Term loan repayment uses equal monthly instalments, a constant illustrative rate and no moratorium. CC/OD interest assumes the stated average utilisation throughout the year; no principal repayment of the revolving facility is modelled.</p></section>'+
+'<section class="page-break"><h2>8. Five-year estimated profit and debt-service statement</h2><p class="figure">₹ lakh unless otherwise stated</p>'+projections+
+'<p><strong>Illustrative aggregate DSCR:</strong> '+safe(debtServiceSummary)+'. Here cash available for term debt service = estimated profit after tax + depreciation + term loan interest; term debt service = term loan principal repayment + term loan interest. Individual bank methodologies may differ.</p></section>'+
+'<section><h2>9. Term loan repayment summary</h2>'+termSchedule+'<p>Balance outstanding after Year 5: <strong>'+money(p[4].loan.closing)+'</strong>. Loans with terms longer than five years continue beyond this projection horizon.</p></section>'+
+'<section><h2>10. First-year break-even illustration</h2><p>Using the assumed direct cost percentage and Year 1 fixed costs (including assumed depreciation and interest), the approximate break-even turnover is <strong>'+breakEven+'</strong>. This is a simplified accounting estimate, not a liquidity or cash break-even calculation.</p></section>'+
+'<section><h2>11. Key risks and mitigations</h2><p>'+para(o.risk)+'</p></section>'+
+(caveats.length?'<section><h2>12. Model review flags</h2><ul>'+caveats.map(x=>'<li>'+safe(x)+'</li>').join("")+'</ul></section>':'')+
+'<section><h2>Supporting documents and review notes</h2><p>Attach cost estimates and quotations, ownership/lease evidence, licences, promoter contribution evidence, customer and sales assumptions, past financials where applicable, and a working capital assessment if a CC/OD facility is proposed. Verify the documents needed through the <strong>MSME Loan Document Checklist Generator</strong>.</p><p class="report-note"><strong>Important:</strong> This is a user-generated draft for initial planning. The figures depend entirely on input assumptions; no market demand, tax, sanction, subsidy, security value or bank eligibility has been independently verified. Not an official project report or sanction recommendation. Have a qualified professional review projections before submitting to any lender.</p></section>';
+$("report").innerHTML=report;
+$("report").hidden=false;$("reportActions").hidden=false;
+$("status").className="success";$("status").textContent="Report generated. Review it below; you can print or save a standalone HTML copy.";
+validReport=true;$("printBtn").disabled=false;$("downloadBtn").disabled=false;
+$("report").scrollIntoView({behavior:"smooth",block:"start"});
+}
+function sample(){
+const data={businessName:"Example Precision Components",promoter:"Illustrative sole proprietor",location:"Coimbatore, Tamil Nadu",constitution:"Proprietorship",activity:"Manufacturing",employment:8,purpose:"Expansion / capacity enhancement",projectDescription:"This fictional precision engineering unit proposes machinery investment and additional working capital to meet expected customer orders. Illustrative figures are provided only to test the report creator.",promoterExperience:"Illustrative promoter with experience in machining and small-unit operations.",market:"Assumed demand from local component buyers. Actual orders and market estimates must be verified before applying.",operations:"Install machines, complete trial production and gradually build sales. Obtain quotations, approvals and supplier confirmations.",risk:"Customer concentration, delayed collections and raw-material price changes; proposed mitigations include diversified customers and regular stock monitoring.",building:8,machinery:30,furnishings:3,preliminary:2,wcMargin:7,promoterCapital:15,termLoan:35,unsecured:0,subsidy:0,sales1:130,salesGrowth:8,directPct:60,salary1:16,admin1:9,other1:6,costGrowth:5,depreciation:3.4,taxPct:25,tlRate:11,tlYears:5,ccLimit:15,ccUse:70,ccRate:12};
+Object.keys(data).forEach(id=>{$(id).value=String(data[id])});
+document.querySelector('input[name="stage"][value="Existing"]').checked=true;
+live();invalidate();$("status").textContent="Fictional sample loaded. Click Generate report preview to test the report.";
+}
+$("projectForm").addEventListener("submit",e=>e.preventDefault());
+$("projectForm").addEventListener("input",()=>{live();invalidate()});
+$("projectForm").addEventListener("change",()=>{live();invalidate()});
+$("generate").addEventListener("click",generate);
+$("loadSample").addEventListener("click",sample);
+$("clearForm").addEventListener("click",()=>{if(!confirm("Clear the current project details?"))return;$("projectForm").reset();["businessName","promoter","location","projectDescription","promoterExperience","market","operations","risk"].forEach(id=>$(id).value="");live();invalidate();$("status").textContent="Form cleared."});
+$("printBtn").addEventListener("click",()=>{if(validReport)window.print()});
+$("downloadBtn").addEventListener("click",()=>{
+if(!validReport)return;
+const css=$("report-css").textContent;
+const html='<!doctype html><html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MSME Project Report</title><style>'+css+'</style></head><body><main class="container">'+$("report").outerHTML+'</main></body></html>';
+const blob=new Blob([html],{type:"text/html;charset=utf-8"}),url=URL.createObjectURL(blob),link=document.createElement("a");
+link.href=url;link.download="MSME-Project-Report-"+(val("businessName").replace(/[^a-z0-9]+/gi,"-").slice(0,45)||"Draft")+".html";
+document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);
+});
+live();
+})();
+
+</script></body></html>
