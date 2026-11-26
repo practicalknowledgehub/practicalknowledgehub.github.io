@@ -228,8 +228,8 @@ const metricRows=[
 ["EBITDA",x=>x.ebitda],["Depreciation (assumed)",x=>x.dep],["Term loan interest",x=>x.tlInterest],["Cash credit / OD interest",x=>x.ccInterest],
 ["Profit before estimated tax",x=>x.beforeTax],["Illustrative tax provision",x=>x.tax],["Profit after estimated tax",x=>x.pat],
 ["Cash available for term debt service",x=>x.available],["Term loan principal + interest",x=>x.debtService]];
-const projections=rowsTable(["Particulars (₹ lakh)","Year 1","Year 2","Year 3","Year 4","Year 5"],metricRows.map(r=>cols([safe(r[0])].concat(p.map(q=>num(r[1](q))))))+
-cols(["DSCR"].concat(p.map(q=>q.dscr===null?"N/A":num(q.dscr)+"x"))));
+const projections=rowsTable(["Particulars (₹ lakh)","Year 1","Year 2","Year 3","Year 4","Year 5"],metricRows.map(r=>cols([safe(r[0])].concat(p.map(q=>num(r[1](q)))))).concat([
+cols(["DSCR"].concat(p.map(q=>q.dscr===null?"N/A":num(q.dscr)+"x"))) ]));
 const termSchedule=rowsTable(["Term loan (₹ lakh)","Y1","Y2","Y3","Y4","Y5"],[
 ["Opening outstanding",x=>x.opening],["Principal repaid",x=>x.principal],["Interest",x=>x.interest],["Closing outstanding",x=>x.closing]].map(r=>cols([safe(r[0])].concat(p.map(q=>num(r[1](q.loan)))))));
 const profile=rowsTable(["Business particulars","Details"],[
